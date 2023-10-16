@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="English" xml:lang="English">
+<head>
+<!-- 2024-01-18 Thu 14:59 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Systemd on Guix System - How hard could it be?</title>
+<meta name="author" content="Christina O'Donnell" />
+<meta name="description" content="A preliminary investigation" />
+<meta name="keywords" content="Systemd, Guix, Guix System, Linux, open source" />
+<meta name="generator" content="Org Mode" />
+<link rel="icon" type="image/x-icon" href="/include/octocurious-3-favicon-512.ico" />
+<link rel="stylesheet" href="/include/simple.css" />
+<link rel="stylesheet" href="/include/style.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+</head>
+<body>
+<header id="header" class="status">
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-11397193092"></script>
+<script>
+ window.dataLayer = window.dataLayer || [];
+ function gtag(){dataLayer.push(arguments);}
+ gtag('js', new Date());
+ gtag('config', 'AW-11397193092');
+</script>
+<span class="site-title">
+    <img class="logo" src="/include/octocurious-3-tight-nobg.svg">
+    <div class="text">
+        <h1>Octocurious</h1>
+        <h2>Christina O'Donnell</h2>
+    </div>
+</span>
+<nav>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/pages/blog.html">Blog</a></li>
+        <li><a href="/pages/tutoring.html">Tutoring</a></li>
+        <!-- <li><a href="/resume.html">Resume</a></li> -->
+        <li><a href="https://github.com/cdo256">GitHub</a></li>
+    </ul>
+</nav>
+</header>
+<main id="content" class="content">
+<h1 class="title">Systemd on Guix System - How hard could it be?</h1>
+<blockquote>
+<p>
+To be honest, while the Shepherd has been a fun hack, I’ve been more and
+more feeling that yeah, it wouldn’t cut it in the long term (it’s also
+become clearer Scheme as convenient as C when it comes to systems
+programming and things like dealing with dependency graphs.)
+</p>
+<div class="footer" id="org05addd7">
+<p>
+ &#x2013; Ludovic Courtès, 2018
+(quoted <b>grossly</b> out of <a href="https://lists.gnu.org/archive/html/guix-devel/2018-04/msg00002.html">context</a>)
+</p>
+
+</div>
+</blockquote>
+
+<div id="outline-container-orgcd6b7b5" class="outline-2">
+<h2 id="orgcd6b7b5">Introduction</h2>
+<div class="outline-text-2" id="text-orgcd6b7b5">
+<p>
+This post explores the concept of integrating Systemd (a widely used init
+system in the Linux ecosystem) as the init system for GNU/Guix, a
+transactional package manager and Linux distribution. We trace the history of
+this idea, its reception, and outline how I think it could be achieved.
+</p>
+
+<p>
+The current init system of Guix is GNU/Shepherd. This is a service manager
+written in Guile (do I need to keep adding the 'GNU/' prefix?), which is the
+same language as Guix.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org10cc16f" class="outline-2">
+<h2 id="org10cc16f">Okay, but why?</h2>
+<div class="outline-text-2" id="text-org10cc16f">
+<p>
+<b><b>Familiarity and Compatibility</b></b>: Many users transitioning to GNU Guix may be
+accustomed to systemd, which is the standard in numerous Linux distributions.
+They might have a preference for systemd or possess existing systemd unit files
+they wish to continue using. This familiarity can be a significant factor in
+their choice of init system.
+</p>
+
+<p>
+<b><b>Performance</b></b>: Systemd is notable for its rapid parallelization
+of start-up processes, potentially resulting in quicker boot times. It offers an
+array of features like socket activation, service monitoring, and cgroups that
+users (such as myself) might find advantageous.
+</p>
+
+<p>
+<b><b>Integration with Software</b></b>: Certain applications are specifically designed to
+leverage systemd's capabilities in service management and logging. Users
+dependent on such software might naturally gravitate towards systemd for
+compatibility reasons.
+</p>
+
+<p>
+<b><b>Community and Documentation</b></b>: Systemd's widespread use has led to the formation
+of a robust community and the development of comprehensive documentation. This
+extensive support can be invaluable for troubleshooting and educational
+purposes.
+</p>
+
+<p>
+<b><b>System Management</b></b>: Systemd encompasses a broad array of system management tools,
+including journald for logging and udev for device initialization. This suite
+can simplify various system administration tasks.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org5dbfedc" class="outline-2">
+<h2 id="org5dbfedc">History of Systemd in the context of Guix</h2>
+<div class="outline-text-2" id="text-org5dbfedc">
+<ul class="org-ul">
+<li>In 2018, a playful April Fools' patch was sent to the Guix development list,
+proposing the addition of a Systemd package. This was initially a joke, but
+it sparked a conversation about the serious integration of Systemd into
+Guix.
+<ul class="org-ul">
+<li>Source: <a href="https://lists.gnu.org/archive/html/guix-devel/2018-04/msg00001.html">April Fools' Systemd Patch</a></li>
+</ul></li>
+<li>A Google Summer of Code candidate was accepted to improve Shepherd, which
+would have allowed it to accept unit files and manage cgroups.</li>
+<li>In 2021, an extended version of the 2018 patch was submitted to the Guix
+project. However, it faced rejection due to compatibility issues and a lack
+of significant benefits for free software packages.
+<ul class="org-ul">
+<li>Discussion Link: <a href="https://issues.guix.gnu.org/48924">Add systemd - Guix</a></li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org65f675a" class="outline-2">
+<h2 id="org65f675a">Implementation</h2>
+<div class="outline-text-2" id="text-org65f675a">
+<p>
+Here I'm just considering Guix System services, though I expect Guix Home
+services would follow a similar philosophy.
+</p>
+</div>
+
+<div id="outline-container-orge9929de" class="outline-3">
+<h3 id="orge9929de">Directories</h3>
+<div class="outline-text-3" id="text-orge9929de">
+<p>
+Here I'm letting the variable <code>$GUIX_SYSTEM_PROFILE</code> correspond to the profile
+of the current running system. This is typically
+<code>/var/guix/profiles/system/profile/</code>.
+</p>
+
+<ul class="org-ul">
+<li><code>$GUIX_SYSTEM_PROFILE/lib/systemd/system</code> - This directory will contain the
+package service and other files.</li>
+<li><code>/etc/systemd/system</code> - This can be used for enabling and disabling services
+at each target. There are two options that I can think of for this directory:
+<ul class="org-ul">
+<li>One is to populate it with store items. This would allow <code>guix system
+     reconfigure</code> to set up a running system without requiring the user to
+manually populate <code>/etc</code>. But it would also mean that <code>systemctl</code> wouldn't
+be able to function, as it works on /etc files.</li>
+<li>Another option is to have any file in <code>/etc</code> shadow its corresponding
+profile item. This would have to be set up such that the existence of
+<code>/etc/xyz.target.wants</code> overrides the corresponding the wants in
+<code>$GUIX_SYSTEM_PROFILE/etc/xyz.target.wants</code>. That way a unit could be
+removed from wants by the user. Otherwise they'd always have the default
+wants enabled for each target.</li>
+</ul></li>
+<li><code>/run/systemd/system</code> - This directory could be used to manage runtime
+services, with no changes envisioned.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org8f62cf2" class="outline-3">
+<h3 id="org8f62cf2">Strategy</h3>
+<div class="outline-text-3" id="text-org8f62cf2">
+<p>
+Each unit will be implemented as a G-expressions on a Scheme
+<code>&lt;systemd-service&gt;</code> record. When these are lowered, they produce a
+file-like object containing a distinct systemd unit file, which is placed
+in <code>$GUIX_SYSTEM_PROFILE/lib/systemd/system</code>.
+</p>
+
+<p>
+Systemd will be configured to look in these directories and interpret
+relative paths appropriately.
+</p>
+
+<p>
+What could end up being a bit of headache is that disabling services won't be
+able to be done with <code>systemctl</code>, and would have to be done with <code>guix system
+reconfigure</code>.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgb18c7fe" class="outline-2">
+<h2 id="orgb18c7fe">NixOS uses Systemd. Why don't I just use NixOS?</h2>
+<div class="outline-text-2" id="text-orgb18c7fe">
+<p>
+I have to admit, I do feel a bit silly suggesting adding Systemd to Guix. NixOS,
+the package that Guix is based on, comes with Systemd as the sole init system.
+Why don't I just go and use that instead? Why do I have to corrupt the beautiful
+Scheme operating system with mainstream programs written in mainstream
+languages?
+</p>
+
+<p>
+This is a good question and I don't feel like I've got a well defensible answer.
+I like Scheme and prefer it to Nix's bespoke language. I don't see any reason
+why a Scheme daemon needs to be be ran with a PID 1 interpreter.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org751a64b" class="outline-2">
+<h2 id="org751a64b">Conclusion</h2>
+<div class="outline-text-2" id="text-org751a64b">
+<p>
+If you think that I'm wrong, and have a clear reason why, please send me an
+email at <a href="mailto:cdo@mutix.org">cdo@mutix.org</a>. I really want to know so I don't trudge through code
+trying to hack this darn thing together only to realize that the Shepherd guile
+is inseparably tangled in the threads of Guix's scheme.
+</p>
+
+<p>
+While the integration of Systemd into GNU/Guix has faced challenges and
+skepticism, it remains an interesting proposal that highlights the dynamic and
+evolving nature of open-source projects. This exploration sheds light on the
+  complexities and considerations involved in such integrations.
+</p>
+</div>
+</div>
+</main>
+<footer id="footer" class="status">
+<span>Copyright &copy; Christina O'Donnell 2023</span>
+</footer>
+</body>
+</html>

@@ -1,0 +1,156 @@
+@font-face {
+    font-family: "dongle";
+    src: local("dongle"),
+         url("https://octocurious.com/include/dongle-light.ttf") format("truetype");
+    font-weight: light;
+    font-style: normal;
+    font-display: swap;
+    size-adjust: 200%;
+}
+@font-face {
+    font-family: "dongle";
+    src: local("dongle"),
+         url("https://octocurious.com/include/dongle-regular.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+    size-adjust: 200%;
+}
+@font-face {
+    font-family: "dongle";
+    src: local("dongle"),
+         url("https://octocurious.com/include/dongle-bold.ttf") format("truetype");
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+    size-adjust: 200%;
+}
+
+@media only screen and (max-width: 850px) {
+    #header {
+        flex-direction: column;
+    }
+}
+
+:root {
+    --bg: hsl(191 60% 93% / 1);
+    --accent-bg: transparent;
+}
+
+body {
+    font-size: 1rem;
+    line-height: 1.3;
+    display: grid;
+    grid-template-columns: 1fr min(50rem,90%) 1fr;
+    grid-template-rows: min-content min-content min-content 1fr;
+    margin: 0;
+    background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgb(67 127 124) 30%, hsl(191 60% 93% / 1) 100%);
+    font-family: sans-serif;
+    min-height: 100vh;
+}
+
+h1 {
+    font-size: 2rem;
+}
+
+h2 {
+    font-size: 1.7rem;
+    margin-top: 2rem;
+}
+
+h3 {
+    font-size: 1.4rem;
+    margin-top: 2rem;
+}
+
+h4 {
+    font-size: 1.2rem;
+}
+
+h5 {
+    font-size: 1.1rem;
+}
+
+h6 {
+    font-size: 1.0rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: dongle, sans-serif;
+    color: var(--brand);
+}
+
+main.content {
+    background-color: hsl(187 41% 95% / 0.7);
+    border-radius: 50px;
+    padding: 1.5em;
+}
+
+
+#header {
+    display: flex;
+    align-items: center;
+    border-bottom: none;
+    justify-content: space-around;
+    padding: 0em 0.5em;
+    max-height: 200px;
+    font-family: dongle, sans-serif;
+}
+
+.site-title {
+    display: flex;
+    align-items: center;
+    margin: 0.3em;
+    min-width: 23em;
+    width: 23em;
+    font-size: 1.15rem;
+}
+
+.site-title .logo {
+    height: 6.25em;
+}
+
+.site-title .text {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.site-title .text h1 {
+    font-size: 2.3rem;
+    line-height: 100%;
+    margin: 0.5rem;
+}
+
+.site-title .text h2 {
+    font-size: 1.5rem;
+    line-height: 100%;
+    margin: 0.5rem;
+    color: var(--brand-desaturated);
+}
+
+blockquote {
+    background: #f9f9f9;
+    border-left: 10px solid #ccc;
+    margin: 1.5em 10px;
+    padding: 0.5em 10px;
+    quotes: "\201C""\201D""\2018""\2019";
+}
+blockquote:before {
+    color: #ccc;
+    content: open-quote;
+    font-size: 4em;
+    line-height: 0.1em;
+    margin-right: 0.25em;
+    vertical-align: -0.4em;
+}
+
+blockquote p {
+    display: inline;
+}
+
+blockquote footer {
+    display: block;
+    text-align: right;
+}
+

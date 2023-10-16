@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="English" xml:lang="English">
+<head>
+<!-- 2024-01-18 Thu 14:59 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>How to Make Your Own Guix Channel</title>
+<meta name="author" content="Christina O'Donnell" />
+<meta name="keywords" content="Channels, Guix, Linux, Open Source, GNU System" />
+<meta name="generator" content="Org Mode" />
+<link rel="icon" type="image/x-icon" href="/include/octocurious-3-favicon-512.ico" />
+<link rel="stylesheet" href="/include/simple.css" />
+<link rel="stylesheet" href="/include/style.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+</head>
+<body>
+<header id="header" class="status">
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-11397193092"></script>
+<script>
+ window.dataLayer = window.dataLayer || [];
+ function gtag(){dataLayer.push(arguments);}
+ gtag('js', new Date());
+ gtag('config', 'AW-11397193092');
+</script>
+<span class="site-title">
+    <img class="logo" src="/include/octocurious-3-tight-nobg.svg">
+    <div class="text">
+        <h1>Octocurious</h1>
+        <h2>Christina O'Donnell</h2>
+    </div>
+</span>
+<nav>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/pages/blog.html">Blog</a></li>
+        <li><a href="/pages/tutoring.html">Tutoring</a></li>
+        <!-- <li><a href="/resume.html">Resume</a></li> -->
+        <li><a href="https://github.com/cdo256">GitHub</a></li>
+    </ul>
+</nav>
+</header>
+<main id="content" class="content">
+<h1 class="title">How to Make Your Own Guix Channel</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org4de4706">Understanding Channels</a>
+<ul>
+<li><a href="#org07a7a0a">Role of Channels</a></li>
+<li><a href="#org39e4849">What can you use a channel for?</a></li>
+</ul>
+</li>
+<li><a href="#org008d0dc">Creating a Channel</a>
+<ul>
+<li><a href="#org9e6d1b7">Setting Up a Git Repository</a></li>
+<li><a href="#orgca64d04">Writing Package Definitions</a></li>
+<li><a href="#org68ad342">Making Channel Visible to Guix Commands</a></li>
+</ul>
+</li>
+<li><a href="#org8e11135">Turning Repository into a Channel</a>
+<ul>
+<li><a href="#orgd415790">Editing the Channel Configuration</a></li>
+<li><a href="#org680b3bc">Channel Configuration Structure</a></li>
+<li><a href="#org39dd51c">Updating Channel Configuration</a></li>
+</ul>
+</li>
+<li><a href="#orge3dd84f">Additional Channel Configuration</a>
+<ul>
+<li><a href="#org44f405b">Channel Authentication</a></li>
+<li><a href="#orgd7f991b">Local File URL for Package Channel</a></li>
+</ul>
+</li>
+<li><a href="#org34f2e90">Pinning Channels to Specific Commits</a>
+<ul>
+<li><a href="#org3dc7367">Using guix describe to Generate Pinned Channel Configuration</a></li>
+<li><a href="#org6d4357b">Updating Pinned Channels</a></li>
+</ul>
+</li>
+<li><a href="#org1170043">Exploring Noteworthy Channels</a>
+<ul>
+<li><a href="#orgb535cfa">Nonguix Channel</a></li>
+<li><a href="#org0c59d10">Flat Channel</a></li>
+<li><a href="#orga584a63">Guix Gaming Channels: Games</a></li>
+</ul>
+</li>
+<li><a href="#org5ab5f09">What's Next?</a></li>
+<li><a href="#org9428713">Conclusion</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org4de4706" class="outline-2">
+<h2 id="org4de4706">Understanding Channels</h2>
+<div class="outline-text-2" id="text-org4de4706">
+<p>
+<a href="https://guix.gnu.org/">GNU/Guix</a> is a <a href="https://en.wikipedia.org/wiki/GNU_Guix#Transactional_upgrades">transactional package manager</a> and an advanced distribution of the
+GNU system that "respects user freedom"<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup>. As a powerful tool, Guix allows users to create their
+own package repositories in the form of Git repositories called channels.
+</p>
+
+<p>
+This allows you to host your own packages to share with the world, or just
+within your organization.
+</p>
+
+<p>
+Channels are a directory of Guix package definitions hosted as a Git repository.
+This functionality opens up an avenue for users to extend Guix and its package
+collection, enabling the addition of custom software or drivers that may not be
+available in the default Guix repository.
+</p>
+</div>
+
+<div id="outline-container-org07a7a0a" class="outline-3">
+<h3 id="org07a7a0a">Role of Channels</h3>
+<div class="outline-text-3" id="text-org07a7a0a">
+<p>
+Channel repositories can contain any content, but the most beneficial
+channels will include Guile modules that export packages or services.
+These packages then become accessible via any 'guix' command, once the
+channel is added to the Guix profile.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org39e4849" class="outline-3">
+<h3 id="org39e4849">What can you use a channel for?</h3>
+<div class="outline-text-3" id="text-org39e4849">
+<p>
+The use of channels provides numerous advantages:
+</p>
+
+<ol class="org-ol">
+<li><b>Package Availability</b>: Channels can host a wide array of software,
+including those not available in the default Guix package collection.</li>
+<li><b>Reproducibility</b>: Channels can be pinned to specific commits,
+ensuring complete reproducibility of the software environment across
+multiple machines.</li>
+<li><b>Flexibility</b>: Channels enable you to specify which commit or branch
+of the channel you wish to pull, offering greater control over
+package versions.</li>
+<li><b>User Freedom</b>: Channels allow users to manage their Guix
+configuration according to their needs.</li>
+</ol>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org008d0dc" class="outline-2">
+<h2 id="org008d0dc">Creating a Channel</h2>
+<div class="outline-text-2" id="text-org008d0dc">
+<p>
+Creating a channel involves several steps, including setting up a Git
+repository, writing package definitions in Guile modules, and making the
+channel available to Guix commands.
+</p>
+</div>
+
+<div id="outline-container-org9e6d1b7" class="outline-3">
+<h3 id="org9e6d1b7">Setting Up a Git Repository</h3>
+<div class="outline-text-3" id="text-org9e6d1b7">
+<p>
+To create a channel, you first need to establish a Git repository that
+will house your <code>.scm</code> files. These files provide the package
+definitions. To make the repository a channel, initiate it as a Git
+repository, add your <code>.scm</code> files, and make a commit.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgca64d04" class="outline-3">
+<h3 id="orgca64d04">Writing Package Definitions</h3>
+<div class="outline-text-3" id="text-orgca64d04">
+<p>
+Once your Git repository is set up, it's time to write package
+definitions. This can be accomplished by creating Guile modules that
+export the packages you want to add to your channel. It's important to
+note that the package definitions should be assigned to an exported
+variable name using <code>define-public</code>. This assigns the package to a
+variable so it can be referenced, even as a dependency of other
+packages.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org68ad342" class="outline-3">
+<h3 id="org68ad342">Making Channel Visible to Guix Commands</h3>
+<div class="outline-text-3" id="text-org68ad342">
+<p>
+After creating your packages, you need to make them visible to Guix
+commands. This can be achieved by adding the directory to the search
+path using the <code>-L</code> command-line option. Once you've done this, you can
+run various 'guix' commands to show or build your packages.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org8e11135" class="outline-2">
+<h2 id="org8e11135">Turning Repository into a Channel</h2>
+<div class="outline-text-2" id="text-org8e11135">
+<p>
+To transform your Git repository into a channel, you need to add the
+channel to your Guix channel configuration. This allows Guix to pick up
+your channel and make its packages readily available to all 'guix'
+commands.
+</p>
+</div>
+
+<div id="outline-container-orgd415790" class="outline-3">
+<h3 id="orgd415790">Editing the Channel Configuration</h3>
+<div class="outline-text-3" id="text-orgd415790">
+<p>
+The channel configuration informs Guix where to find the packages you
+wish to install. To make Guix aware of your new channel, you will need
+to edit the channel configuration to include your channel. This can be
+done by creating the <code>channels.scm</code> file in the <code>~/.config/guix/</code>
+directory.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org680b3bc" class="outline-3">
+<h3 id="org680b3bc">Channel Configuration Structure</h3>
+<div class="outline-text-3" id="text-org680b3bc">
+<p>
+The structure of a channel configuration is simple and written in Guile
+Scheme. Each channel item provided will be combined with the
+<code>%default-channels</code> to produce the final channel list.
+<code>%default-channels</code> is a variable containing the list of default
+channels, which by default only includes the main Guix channel.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org39dd51c" class="outline-3">
+<h3 id="org39dd51c">Updating Channel Configuration</h3>
+<div class="outline-text-3" id="text-org39dd51c">
+<p>
+Any changes made to your channel configuration will require you to run
+<code>guix pull</code> before the channel's packages become available. If you
+encounter any errors during this process, it's recommended to
+double-check your channel configuration file to ensure that all the
+parentheses are matched up correctly.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge3dd84f" class="outline-2">
+<h2 id="orge3dd84f">Additional Channel Configuration</h2>
+<div class="outline-text-2" id="text-orge3dd84f">
+<p>
+In addition to specifying the channel name and URL, you can also
+configure the branch of the Git repository to use and provide
+"introduction" information to authenticate the commits in the channel.
+</p>
+</div>
+
+<div id="outline-container-org44f405b" class="outline-3">
+<h3 id="org44f405b">Channel Authentication</h3>
+<div class="outline-text-3" id="text-org44f405b">
+<p>
+Channel authentication uses additional metadata to ensure that all
+commits in a channel past a certain commit have been signed with known
+GPG keys. This provides an added layer of security, helping to ensure
+that no malicious changes have been inserted into the channel.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgd7f991b" class="outline-3">
+<h3 id="orgd7f991b">Local File URL for Package Channel</h3>
+<div class="outline-text-3" id="text-orgd7f991b">
+<p>
+If you're working on Guix packages locally, you can use a local file URL
+for a package channel. This can be useful for ensuring that your package
+changes will work correctly when pulled to another machine.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org34f2e90" class="outline-2">
+<h2 id="org34f2e90">Pinning Channels to Specific Commits</h2>
+<div class="outline-text-2" id="text-org34f2e90">
+<p>
+For maintaining a fully reproducible configuration across multiple
+machines, it can be helpful to "pin" your channels to specific commits.
+This ensures that you fetch the same set of packages every time you run
+<code>guix pull</code>.
+</p>
+</div>
+
+<div id="outline-container-org3dc7367" class="outline-3">
+<h3 id="org3dc7367">Using guix describe to Generate Pinned Channel Configuration</h3>
+<div class="outline-text-3" id="text-org3dc7367">
+<p>
+You can run the <code>guix describe</code> command to generate a complete channel
+configuration with each channel pinned to the commit that you've pulled
+most recently. This command outputs a configuration that can be placed
+in the location where the channel configuration is kept.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org6d4357b" class="outline-3">
+<h3 id="org6d4357b">Updating Pinned Channels</h3>
+<div class="outline-text-3" id="text-org6d4357b">
+<p>
+Once you've pinned your channel configuration, you might want to update
+them to newer commits in the future. To do this, you can have a separate
+channel file with the base list of channels and pass that to
+<code>guix pull --channels=my-channels.scm</code>.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org1170043" class="outline-2">
+<h2 id="org1170043">Exploring Noteworthy Channels</h2>
+<div class="outline-text-2" id="text-org1170043">
+<p>
+There are several useful Guix channels you might be interested in
+exploring:
+</p>
+</div>
+
+<div id="outline-container-orgb535cfa" class="outline-3">
+<h3 id="orgb535cfa">Nonguix Channel</h3>
+<div class="outline-text-3" id="text-orgb535cfa">
+<p>
+<a href="https://gitlab.com/nonguix/nonguix">Nonguix</a> is an excellent source
+for software and drivers that can't be included in the main Guix
+repository. It provides the full Linux kernel, necessary to run Guix on
+modern laptops, NVIDIA drivers, various wifi chipset drivers, and more.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0c59d10" class="outline-3">
+<h3 id="org0c59d10">Flat Channel</h3>
+<div class="outline-text-3" id="text-org0c59d10">
+<p>
+The <a href="https://github.com/flatwhatson/guix-channel.git">flat channel</a>
+provides a convenient way to install Emacs 28 with the new native-comp
+branch, which offers native compilation of Emacs Lisp code.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga584a63" class="outline-3">
+<h3 id="orga584a63">Guix Gaming Channels: Games</h3>
+<div class="outline-text-3" id="text-orga584a63">
+<p>
+The <a href="https://gitlab.com/guix-gaming-channels/games.git">Guix Gaming
+Channels: Games</a> channel provides Guix packages for a variety of
+proprietary games, making it easier to run them on Guix.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org5ab5f09" class="outline-2">
+<h2 id="org5ab5f09">What's Next?</h2>
+<div class="outline-text-2" id="text-org5ab5f09">
+<p>
+After understanding the basics of Guix channels and how to create your
+own, you are now equipped to manage your Guix configuration according to
+your specific needs. Future exploration could involve performing a full
+Guix system installation or learning more about how to manage your
+system effectively with Guix.
+</p>
+
+<p>
+Creating your own Guix channel offers a greater degree of control and
+flexibility over your software environment. With the ability to
+customize your package collection, pin channels to specific commits for
+reproducibility, and access a wider array of software, channels amplify
+the power of the Guix package manager. Whether you're a Linux enthusiast
+or an open-source software developer, harnessing the power of Guix
+channels can greatly enhance your software management experience.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org9428713" class="outline-2">
+<h2 id="org9428713">Conclusion</h2>
+<div class="outline-text-2" id="text-org9428713">
+<p>
+In this comprehensive guide, we have explored the concept of Guix
+channels, delved into the process of creating your own channel, and
+highlighted some of the useful channels available. By leveraging
+channels, you can extend the capabilities of the Guix package manager to
+cater to your specific needs, ensuring a more customizable and
+reproducible software environment. Whether you're a seasoned Guix user
+or a newbie in the world of open-source software, creating your own Guix
+channel is a valuable skill that can enhance your proficiency in
+managing and customizing your software.
+</p>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1" role="doc-backlink">1</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">Except the freedom to use
+proprietary software ;)</p></div></div>
+
+
+</div>
+</div></main>
+<footer id="footer" class="status">
+<span>Copyright &copy; Christina O'Donnell 2023</span>
+</footer>
+</body>
+</html>

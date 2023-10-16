@@ -1,0 +1,76 @@
+#+TITLE: Octocurious - Computer Science Tutoring
+#+AUTHOR: Christina O'Donnell
+#+EMAIL: cdo@mutix.org
+#+PHONE: +447742576495
+#+OPTIONS: toc:nil num:nil
+
+** Welcome
+Hi, I'm Christina O'Donnell and I'm Octocurious! I am an undergraduate-level
+Computer Science tutor with a 5/5 rating on Varsity Tutors.
+
+*** I'll help you reach clarity
+When a student reaches out to me, my primary aim is to work systematically
+through the basics, and get them to a point of understanding that I call
+'clarity'.
+
+'Clarity', for me, means a state of where questions make sense, terms are
+understandable, and you could draw a clear diagram of what's going on.
+
+*** Curiosity leads to clarity
+Curiosity is key in computer science, a field rich in complexity and innovation.
+As an undergraduate, your natural inquisitiveness can turn daunting topics into
+opportunities for profound understanding. Delving deeper, asking questions, and
+exploring various problem-solving perspectives are all fueled by curiosity. This
+mindset is essential for grasping the core principles of computer science and
+fostering innovative thinking, which is at the heart of every major breakthrough
+in the field.
+
+In my tutoring experience, curiosity invariably leads students to clearer
+understanding. Curious students often grasp concepts more deeply, making
+connections beyond basic programming to its real-world applications. This
+active, curious engagement with the material goes beyond rote learning,
+encouraging experimentation and even learning from mistakes. Such an approach
+not only enhances academic performance but also lays a strong foundation for a
+successful career in computer science.
+
+*** Inclusive Environment for All Learners
+Creating an inclusive learning environment is at the core of my tutoring
+philosophy. Having faced challenges myself, I understand the impact of feeling
+marginalized or undervalued. That's why I strive to create a welcoming and
+respectful space for all students, regardless of their background, identity, or
+starting point in computer science. In my sessions, every question is valued,
+and every student is treated with the utmost respect. I believe that diversity
+in thoughts and experiences enriches our learning journey, and I am committed to
+ensuring that every student feels seen, heard, and supported. This inclusive
+approach not only fosters a positive learning environment but also encourages
+students to be their authentic selves, which is crucial for genuine learning and
+personal growth.
+
+*** Understanding and Overcoming Challenges
+I deeply empathize with the feeling of falling behind in class, a situation that
+can be daunting and isolating. As your tutor, my role goes beyond just imparting
+knowledge; it's about understanding where you are in your learning journey and
+providing the support you need to catch up and excel. I remember the times I
+struggled and the difference empathetic guidance made for me. That's why I'm
+here to offer a helping hand, to patiently guide you through the concepts you
+find challenging, and to celebrate your progress along the way. My goal is to
+not only help you catch up but to build your confidence and skills so that in
+time, you'll feel empowered to continue your learning journey independently,
+with a strong foundation and a renewed sense of confidence in your abilities.
+
+*** About me
+I hold a First Class BA in Mathematics and Computer Science from the University
+of Oxford. In this rigorous programme, I proved my consistent discipline and
+organisation, achieving a First Class in most modules leading to my overall
+grade.
+
+I am fully DBS checked and verified. I can provide these documents on request.
+
+I tutor Computer Architecture, Computer Programming, Systems Programming, and
+Embedded Systems.
+
+I also tutor A Level Computer Science
+
+*** Contact
+
+You can reach me at christina@octocurious.com.
