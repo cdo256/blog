@@ -52,7 +52,7 @@
 
         ("octocurious:common"
          :recursive t
-         :base-directory "./org/common"
+         :base-directory "./src/common"
          :publishing-directory "./out/octocurious"
          :publishing-function org-html-publish-to-html
          :with-creator t
@@ -75,7 +75,7 @@
 
         ("mutix:main"
          :recursive t
-         :base-directory "./org/mutix"
+         :base-directory "./src/mutix"
          :publishing-directory "./out/mutix"
          :publishing-function org-html-publish-to-html
          :with-creator t
@@ -91,7 +91,7 @@
 
         ("mutix:common"
          :recursive t
-         :base-directory "./org/common"
+         :base-directory "./src/common"
          :publishing-directory "./out/mutix"
          :publishing-function org-html-publish-to-html
          :with-creator t
