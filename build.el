@@ -35,7 +35,7 @@
 (setq org-publish-project-alist
       `(("octocurious:main"
          :recursive t
-         :base-directory "./src/octocurious/pages"
+         :base-directory "./src/octocurious"
          :publishing-directory "./out/octocurious"
          :publishing-function org-html-publish-to-html
          :with-creator t
@@ -43,74 +43,26 @@
          :section-numbers nil
          :email "christina@octocurious.com"
          :language "English"
-         :html-head ,(file-to-string "./out/octocurious/head.html")
-         :html-preamble ,(file-to-string "./out/octocurious/header.html")
-         :html-postamble ,(file-to-string "./out/octocurious/footer.html")
+         :html-head ,(file-to-string "./src/octocurious/head.html")
+         :html-preamble ,(file-to-string "./src/octocurious/header.html")
+         :html-postamble ,(file-to-string "./src/octocurious/footer.html")
          :html-divs ((preamble "header" "header")
                      (content "main" "content")
                      (postamble "footer" "footer")))
 
-        ("octocurious:common"
+        ("octocurious:media"
          :recursive t
-         :base-directory "./src/common"
-         :publishing-directory "./out/octocurious"
-         :publishing-function org-html-publish-to-html
-         :with-creator t
-         :with-toc f
-         :section-numbers nil
-         :email "christina@octocurious.com"
-         :language "English"
-         :html-preamble ,(file-to-string "./static/octocurious-header.html")
-         :html-postamble ,(file-to-string "./static/octocurious-footer.html")
-         :html-divs ((preamble "header" "header")
-                     (content "main" "content")
-                     (postamble "footer" "footer")))
+         :base-directory "./src/octocurious/media"
+         :publishing-directory "./out/octocurious/media"
+         :publishing-function org-publish-attachment
+         :base-extension ".*")
 
-        ("octocurious:static"
+        ("octocurious:include"
          :recursive t
-         :base-directory "./static"
-         :base-extension ".*"
-         :publishing-directory "./out/octocurious/static"
-         :publishing-function org-publish-attachment)
-
-        ("mutix:main"
-         :recursive t
-         :base-directory "./src/mutix"
-         :publishing-directory "./out/mutix"
-         :publishing-function org-html-publish-to-html
-         :with-creator t
-         :with-toc t
-         :section-numbers nil
-         :email "cdo@mutix.org"
-         :language "English"
-         :html-preamble ,(file-to-string "./static/mutix-header.html")
-         :html-postamble ,(file-to-string "./static/mutix-footer.html")
-         :html-divs ((preamble "header" "header")
-                      (content "main" "content")
-                      (postamble "footer" "footer")))
-
-        ("mutix:common"
-         :recursive t
-         :base-directory "./src/common"
-         :publishing-directory "./out/mutix"
-         :publishing-function org-html-publish-to-html
-         :with-creator t
-         :with-toc t
-         :section-numbers nil
-         :email "cdo@mutix.org"
-         :language "English"
-         :html-preamble ,(file-to-string "./static/mutix-header.html")
-         :html-postamble ,(file-to-string "./static/mutix-footer.html")
-         :html-divs ((preamble "header" "header")
-                     (content "main" "content")
-                     (postamble "footer" "footer")))
-
-        ("mutix:static"
-         :recursive t
-         :base-directory "./static"
-         :base-extension ".*"
-         :publishing-directory "./out/mutix/static"
-         :publishing-function org-publish-attachment)))
+         :base-directory "./src/octocurious/include"
+         :publishing-directory "./out/octocurious/include"
+         :publishing-function org-publish-attachment
+         :base-extension ".*")))
 
 (org-publish-all t)
 

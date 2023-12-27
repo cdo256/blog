@@ -4,97 +4,39 @@
 #+PHONE: +447742576495
 #+OPTIONS: toc:nil num:nil
 
-** Welcome
-Hi, I'm Christina O'Donnell, I am a computer enthusiast and I tutor Computer
-Science to undergraduates, with a 5/5 rating on Varsity Tutors.
-
-I tutor Computer Architecture, Computer Programming, Systems Programming, and
-Embedded Systems.
-
-I hold a First Class BA in Mathematics and Computer Science from the University
-of Oxford. In this rigorous programme, I proved my consistent discipline and
-organisation, achieving a First Class in most modules leading to my overall
-grade. 
-
-Unlike some private tutors, I am fully DBS checked and verified. I can provide
-these documents on request.
-
-I tutor undergraduate and A Level computer Science.
-
-Did you know that mother octopi are so devoted that they, in their final months,
-give their remaining life to protect and care for their eggs? They keep their
-brood alive by squirting water at them, essentially giving oxygen to the babies.
-By the time brood have hatched, the little octopi scamper around the sea, never
-having met their mum.
-
-
-I tutor Computer Science, and I'd love to share my curiosity and
-passion with you! I provide one-to-one tuition to [[./tutoring/a-level.org][A Level students]] and
-[[/tutoring/undergrad.org][undergraduates]] online.
-
-# I also make [[./videos.org][videos]], keep a [[./blog.org][blog]], and do a bit of [[https://mutix.org][open source development]].
-
-#+ATTR_HTML: :width 400px
-#+ATTR_HTML: :style float:right;
-[[file:../static/media/profile1-transparent.png]]
-
-** About Me
-I have a First Class Honours BA in Mathematics and Computer Science from the
-University of Oxford. I am truly fascinated with so many areas of computer
-science.
-
-You view my CV [[[[file:./cv.html]]][here]].
-
-** My Tutoring Philosophy
-   My tutoring is centered around understanding your unique needs and learning
-   style. I believe in breaking down complex concepts into simple, digestible
-   pieces, making learning both enjoyable and effective. My goal is not just to
-   help you pass your exams but to foster a deep understanding and love for
-   Computer Science.
-
-** Services Overview
-   I offer comprehensive online tutoring in various computer science subjects,
-   including Computer Architecture, Data Structures, Embedded Systems, and
-   Imperative Programming. My services are tailored to cater to both beginners
-   and advanced students, ensuring personalized learning experiences for
-   everyone.
-
-** Student Testimonials
-   Don’t just take my word for it! Hear what my students have to say about their
-   experiences and improvements. Their feedback is a testament to the
-   effectiveness of my tutoring methods.
-
-   [Placeholder for student testimonials carousel or section]
-
-** Contact Information
-   Ready to take your Computer Science skills to the next level? Get in touch
-   with me to schedule a session or to inquire more about my services. I am
-   available during academic terms on Monday, Wednesday, Thursday, Friday, and
-   Sunday between 2pm and 8pm.
-
-   [Contact Form]
-   [Email Address]
-   [Phone Number]
-
-** Footer
-   - Quick Links: [Home] [About Me] [Services] [Testimonials] [Blog] [Contact]
-   - Disclaimer: I prefer to meet on Zoom for sessions and use Linux and free software as a matter of principle.
-   - Copyright: © 2023 Octocurious. All rights reserved.
-
-** Snippets
-  
-- Ideally, you want to 'live in the subject' while you're learning it. Diagrams
-  on the wall. A computer that let's you write code easily and doesn't distract
-  you. And a whiteboard full of diagrams you keep coming back to.
-- Hmm.. I kinda went off topic
-
-*** Inclusive
-As someone who has been downtrodden myself, I know what it feels like to be made
-to feel less than you are for who you are. That's why I welcome everyone in
-equally, no matter who they are or where they've come from.
-
-*** Empathetic
-I know what it feels like to fall behind the class. It's a horrible, and even
-frightening feeling when you realise that no one is stopping to help. But I'm
-here to help you out, get you back up to speed, and in a few sessions time,
-you'll be able to carry on without me.
+#+BEGIN_EXPORT html
+<section id="problem">
+    <img src="https://placehold.co/300" />
+    <h6>Feeling left behind in your<br/>Computer Science degree?</h6>
+</section>
+<section id="service">
+    <h4>I provide personalised tutoring to help you reach <em>clarity</em>, one module at a time.</h4>
+    <img src="https://placehold.co/200" alt="Action shot" />
+</section>
+<section id="subjects">
+    <a class="subject-item" href="#">
+        <figure>
+            <img src="https://placehold.co/200" alt="Computer stock" />
+            <figcaption>Systems Programming</figcaption>
+        </figure>
+    </a>
+    <a class="subject-item" href="#">
+        <figure class="subject-item">
+            <img src="https://placehold.co/200" alt="Computer stock" />
+            <figcaption>Embedded Systems</figcaption>
+        </figure>
+    </a>
+    <a class="subject-item" href="#">
+        <figure class="subject-item">
+            <img src="https://placehold.co/200" alt="Computer stock" />
+            <figcaption>Computer Architecture</figcaption>
+        </figure>
+    </a>
+</section>
+<section id="reviews">
+    <h2>What others have said</h2>
+    <a class="review-item" href="#">
+        <!--  img class="stars" src="" -->
+    </a>
+</section>
+#+END_EXPORT
