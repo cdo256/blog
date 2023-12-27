@@ -4,39 +4,13 @@
 #+PHONE: +447742576495
 #+OPTIONS: toc:nil num:nil
 
-#+BEGIN_EXPORT html
-<section id="problem">
-    <img src="https://placehold.co/300" />
-    <h6>Feeling left behind in your<br/>Computer Science degree?</h6>
-</section>
-<section id="service">
-    <h4>I provide personalised tutoring to help you reach <em>clarity</em>, one module at a time.</h4>
-    <img src="https://placehold.co/200" alt="Action shot" />
-</section>
-<section id="subjects">
-    <a class="subject-item" href="#">
-        <figure>
-            <img src="https://placehold.co/200" alt="Computer stock" />
-            <figcaption>Systems Programming</figcaption>
-        </figure>
-    </a>
-    <a class="subject-item" href="#">
-        <figure class="subject-item">
-            <img src="https://placehold.co/200" alt="Computer stock" />
-            <figcaption>Embedded Systems</figcaption>
-        </figure>
-    </a>
-    <a class="subject-item" href="#">
-        <figure class="subject-item">
-            <img src="https://placehold.co/200" alt="Computer stock" />
-            <figcaption>Computer Architecture</figcaption>
-        </figure>
-    </a>
-</section>
-<section id="reviews">
-    <h2>What others have said</h2>
-    <a class="review-item" href="#">
-        <!--  img class="stars" src="" -->
-    </a>
-</section>
-#+END_EXPORT
+Hi, I'm Christina O'Donnell! I'm a computer science tutor by day and hacker by night.
+
+My research interest is a mathematical structure I call 'semantic graphs' which
+can be used to make a very elegant graphical pattern calculus. It's all too
+early to publish yet, but that is the goal.
+
+I also play wheelchair basketball for [[http://www.heatwbc.org.uk/][Hareward Heat WBC]].
+
+My code can be found on [[https://github.com/cdo256][GitHub]].
+
