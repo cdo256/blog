@@ -1,10 +1,11 @@
-#+TITLE: Octocurious - Computer Science Tutoring
-#+AUTHOR: Christina O'Donnell
-#+EMAIL: cdo@mutix.org
-#+PHONE: +447742576495
-#+OPTIONS: toc:nil num:nil
+Greetings, Internet! I'm Christina O'Donnell, a computer science tutor and
+enthusiast based in Cambridge, England.
 
-Hi, I'm Christina O'Donnell! I'm a computer science tutor by day and hacker by night.
+You can find more information about my tutoring [[https://octocurious.com/pages/tutoring.html][here]].
+
+I have a First Class BA in Mathematics and Computer Science for University of
+Oxford.
+# You can find my resume [[https://octocurious.com/pages/resume.html][here]]. -- TODO
 
 My research interest is a mathematical structure I call 'semantic graphs' which
 can be used to make a very elegant graphical pattern calculus. It's all too
@@ -12,5 +13,8 @@ early to publish yet, but that is the goal.
 
 I also play wheelchair basketball for [[http://www.heatwbc.org.uk/][Hareward Heat WBC]].
 
-My code can be found on [[https://github.com/cdo256][GitHub]].
+Some of my projects can be found on [[https://github.com/cdo256][GitHub]].
 
+I am always happy to be contacted by humans as well as high quality marketing
+bots. For that, you can email me on
+[[mailto:christina@octocurious.com][mailto:christina@octocurious.com]].
