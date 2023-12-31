@@ -1,0 +1,94 @@
+#+TITLE: Systemd on Guix - How hard could it be?
+#+AUTHOR: Christina O'Donnell
+#+DATE: 2023-12-30
+#+KEYWORDS: Systemd, Guix, Linux, Open Source
+#+DESCRIPTION: A preliminary investigation
+#+OPTIONS: toc:nil
+
+#+BEGIN_QUOTE
+To be honest, while the Shepherd has been a fun hack, I’ve been more and
+more feeling that yeah, it wouldn’t cut it in the long term (it’s also
+become clearer Scheme as convenient as C when it comes to systems
+programming and things like dealing with dependency graphs.)
+#+BEGIN_footer
+ -- Ludovic Courtès, 2018
+(quoted *grossly* out of context)
+#+END_footer
+#+END_QUOTE
+
+** Introduction
+  This post explores the concept of integrating Systemd (a widely used init
+  system in the Linux ecosystem) as the init system for GNU/Guix, a
+  transactional package manager and Linux distribution. We trace the history of
+  this idea, its reception, and outline how I think it could be achieved.
+
+  The current init system of Guix is GNU/Shepherd. This is a service manager
+  written in Guile (do I need to keep adding the 'GNU/'?), which is the same
+  language as Guix.
+
+** Okay, but why?
+
+**Familiarity and Compatibility**: Many users transitioning to GNU Guix may be
+accustomed to systemd, which is the standard in numerous Linux distributions.
+They might have a preference for systemd or possess existing systemd unit files
+they wish to continue using. This familiarity can be a significant factor in
+their choice of init system.
+
+**Security and Performance**: Systemd is notable for its rapid parallelization
+of start-up processes, potentially resulting in quicker boot times. It offers an
+array of features like socket activation, service monitoring, and cgroups that
+users (such as myself) might find advantageous.
+
+**Integration with Software**: Certain applications are specifically designed to
+leverage systemd's capabilities in service management and logging. Users
+dependent on such software might naturally gravitate towards systemd for
+compatibility reasons.
+
+**Community and Documentation**: Systemd's widespread use has led to the formation
+of a robust community and the development of comprehensive documentation. This
+extensive support can be invaluable for troubleshooting and educational
+purposes.
+
+**System Management**: Systemd encompasses a broad array of system management tools,
+including journald for logging and udev for device initialization. This suite
+can simplify various system administration tasks.
+
+However, it's crucial to acknowledge that GNU Guix is inherently designed to
+function seamlessly with the GNU Shepherd init system. Shepherd, developed in
+Guile, offers tight integration with the Guix package manager and aligns with
+the philosophy and design principles of Guix. Users who prefer these aspects
+might find Shepherd more to their liking. Choosing Systemd in Guix would entail
+additional configuration and may not offer the same level of integration as the
+default Shepherd system.
+
+** History of Systemd in the Context of GNU/Guix
+  - In 2018, a playful April Fools' patch was sent to the Guix development list,
+    proposing the addition of a Systemd package. This was initially a joke, but
+    it sparked a conversation about the serious integration of Systemd into
+    Guix.
+    + Source: [[https://lists.gnu.org/archive/html/guix-devel/2018-04/msg00001.html][April Fools' Systemd Patch]]
+  - A Google Summer of Code candidate was accepted to improve Shepherd, which
+    would have allowed it to accept unit files and manage cgroups.
+  - In 2021, an extended version of the 2018 patch was submitted to the Guix
+    project. However, it faced rejection due to compatibility issues and a lack
+    of significant benefits for free software packages.
+    + Discussion Link: [[https://issues.guix.gnu.org/48924][Add systemd - Guix]]
+
+** Design Considerations for Systemd Integration
+  - **Directories:**
+    + @/lib/systemd/system: This directory will contain the package service
+      files.
+    + /etc/systemd/system: For enabling and disabling services.
+    + /run/systemd/system: To manage runtime services.
+  - **Implementation Strategy:**
+    + Each unit will be implemented as a gexp on a scheme record. When these are
+      lowered, they produce a file-like object containing a distinct systemd
+      unit file, which is placed in @/lib/systemd/system.
+    + Systemd will be configured to look in these directories and interpret
+      relative paths appropriately.
+
+** Conclusion
+  While the integration of Systemd into GNU/Guix has faced challenges and
+  skepticism, it remains an interesting proposal that highlights the dynamic and
+  evolving nature of open-source projects. This exploration sheds light on the
+  complexities and considerations involved in such integrations.
