@@ -1,7 +1,7 @@
-#+TITLE: Systemd on Guix - How hard could it be?
+#+TITLE: Systemd on Guix System - How hard could it be?
 #+AUTHOR: Christina O'Donnell
 #+DATE: 2023-12-30
-#+KEYWORDS: Systemd, Guix, Linux, Open Source
+#+KEYWORDS: Systemd, Guix, Guix System, Linux, open source
 #+DESCRIPTION: A preliminary investigation
 #+OPTIONS: toc:nil
 
@@ -53,39 +53,57 @@ purposes.
 including journald for logging and udev for device initialization. This suite
 can simplify various system administration tasks.
 
-** History of Systemd in the Context of GNU/Guix
+** History of Systemd in the context of Guix
   - In 2018, a playful April Fools' patch was sent to the Guix development list,
     proposing the addition of a Systemd package. This was initially a joke, but
     it sparked a conversation about the serious integration of Systemd into
     Guix.
     + Source: [[https://lists.gnu.org/archive/html/guix-devel/2018-04/msg00001.html][April Fools' Systemd Patch]]
   - A Google Summer of Code candidate was accepted to improve Shepherd, which
-    would have allowed it to accept unit files and manage cgroups.
+    would have allowed it to accept unit files and manage cgroups. 
   - In 2021, an extended version of the 2018 patch was submitted to the Guix
     project. However, it faced rejection due to compatibility issues and a lack
     of significant benefits for free software packages.
     + Discussion Link: [[https://issues.guix.gnu.org/48924][Add systemd - Guix]]
 
-** Design Considerations for Systemd Integration
-  - **Directories**:
-    + @/lib/systemd/system: This directory will contain the package service
-      files.
-    + /etc/systemd/system: For enabling and disabling services.
-    + /run/systemd/system: To manage runtime services.
-  - **Implementation Strategy**:
-    + Each unit will be implemented as a gexp on a scheme record. When these are
-      lowered, they produce a file-like object containing a distinct systemd
-      unit file, which is placed in @/lib/systemd/system.
-    + Systemd will be configured to look in these directories and interpret
-      relative paths appropriately.
+** Implementation
+Here I'm just considering Guix System services, though I expect Guix Home
+services would follow a similar philosophy.
 
-** Why don't I just use NixOS?
+*** Directories
+**** =$GUIX_SYSTEM_PROFILE/lib/systemd/system=
+This directory will contain the package service and other files.
+**** =/etc/systemd/system=
+For enabling and disabling services at each target. There are two options for
+this directory:
+ - One is to populate it with store items. This would allow =guix system
+   reconfigure= to set up a running system without requiring the user to
+   manually populate /etc. But it would also mean that =systemctl= wouldn't be
+   able to function, as it works on /etc files.
 
-I have to admit, I do feel a bit silly suggesting this. NixOS, the original
-transactional package that Guix is based on, comes with Systemd as the sole init
-system. Why don't I just go and use that instead? Why do I have to corrupt the
-beautiful Scheme operating system with mainstream programs written in mainstream
-languages?
+**** =/run/systemd/system=
+To manage runtime services.
+
+*** Strategy
+Each unit will be implemented as a G-expressions on a Scheme
+=<systemd-service>= record. When these are lowered, they produce a
+file-like object containing a distinct systemd unit file, which is placed
+in =$GUIX_SYSTEM_PROFILE/lib/systemd/system=.
+
+Systemd will be configured to look in these directories and interpret
+relative paths appropriately.
+
+What could end up being a bit of headache is that disabling services won't be
+able to be done with =systemctl=, and would have to be done with =guix system
+reconfigure=.
+
+** Sounds complicated: Why don't I just use NixOS?
+
+I have to admit, I do feel a bit silly suggesting adding Systemd to Guix. NixOS,
+the package that Guix is based on, comes with Systemd as the sole init system.
+Why don't I just go and use that instead? Why do I have to corrupt the beautiful
+Scheme operating system with mainstream programs written in mainstream
+languages? 
 
 This is a good question and I don't feel like I've got a well defensible answer.
 I like Scheme and prefer it to Nix's bespoke language. I don't see any reason
