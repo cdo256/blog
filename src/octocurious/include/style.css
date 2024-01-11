@@ -1,22 +1,97 @@
+@font-face {
+    font-family: "dongle";
+    src: url("https://octocurious.com/include/dongle-light.ttf") format("truetype");
+    font-weight: light;
+    font-style: normal;
+    font-display: swap;
+    size-adjust: 170%;
+}
+@font-face {
+    font-family: "dongle";
+    src: url("https://octocurious.com/include/dongle-regular.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+    size-adjust: 170%;
+}
+@font-face {
+    font-family: "dongle";
+    src: url("https://octocurious.com/include/dongle-bold.ttf") format("truetype");
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+    size-adjust: 170%;
+}
+
 @media only screen and (max-width: 850px) {
     #header {
         flex-direction: column;
     }
 }
 
+:root {
+    --bg: hsl(191 60% 93% / 1);
+    --accent-bg: transparent;
+}
+
 body {
     font-size: 1rem;
     line-height: 1.3;
-    display: gird;
+    display: grid;
     grid-template-columns: 1fr min(50rem,90%) 1fr;
+    grid-template-rows: min-content min-content min-content 1fr;
     margin: 0;
+    background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgb(67 127 124) 30%, hsl(191 60% 93% / 1) 100%);
+    font-family: sans-serif;
+    min-height: 100vh;
 }
+
+h1 {
+    font-size: 2rem;
+}
+
+h2 {
+    font-size: 1.7rem;
+    margin-top: 2rem;
+}
+
+h3 {
+    font-size: 1.4rem;
+    margin-top: 2rem;
+}
+
+h4 {
+    font-size: 1.2rem;
+}
+
+h5 {
+    font-size: 1.1rem;
+}
+
+h6 {
+    font-size: 1.0rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: dongle;
+    font-weight: light;
+}
+
+main.content {
+    background-color: hsl(187 41% 95% / 1);
+    border-radius: 50px;
+    padding: 1.5em;
+}
+
 
 #header {
     display: flex;
     align-items: center;
+    border-bottom: none;
     justify-content: space-around;
     padding: 0em 0.5em;
+    max-height: 200px;
+    font-family: dongle, sans-serif;
 }
 
 .site-title {
