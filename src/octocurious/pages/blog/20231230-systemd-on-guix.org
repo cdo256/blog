@@ -97,13 +97,13 @@ What could end up being a bit of headache is that disabling services won't be
 able to be done with =systemctl=, and would have to be done with =guix system
 reconfigure=.
 
-** Sounds complicated: Why don't I just use NixOS?
+** NixOS uses Systemd. Why don't I just use NixOS?
 
 I have to admit, I do feel a bit silly suggesting adding Systemd to Guix. NixOS,
 the package that Guix is based on, comes with Systemd as the sole init system.
 Why don't I just go and use that instead? Why do I have to corrupt the beautiful
 Scheme operating system with mainstream programs written in mainstream
-languages? 
+languages?
 
 This is a good question and I don't feel like I've got a well defensible answer.
 I like Scheme and prefer it to Nix's bespoke language. I don't see any reason

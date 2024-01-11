@@ -4,6 +4,14 @@
     }
 }
 
+body {
+    font-size: 1rem;
+    line-height: 1.3;
+    display: gird;
+    grid-template-columns: 1fr min(50rem,90%) 1fr;
+    margin: 0;
+}
+
 #header {
     display: flex;
     align-items: center;
@@ -11,7 +19,7 @@
     padding: 0em 0.5em;
 }
 
-.title {
+.site-title {
     display: flex;
     align-items: center;
     margin: 0.3em;
@@ -19,23 +27,23 @@
     width: 23em;
 }
 
-.title .logo {
+.site-title .logo {
     height: 6.25em;
 }
 
-.title .text {
+.site-title .text {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
 }
 
-.title .text h1 {
+.site-title .text h1 {
     font-size: 2.3rem;
     line-height: 100%;
     margin: 0.5rem;
 }
 
-.title .text h2 {
+.site-title .text h2 {
     font-size: 1.5rem;
     line-height: 100%;
     margin: 0.5rem;

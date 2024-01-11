@@ -18,3 +18,7 @@ Some of my projects can be found on [[https://github.com/cdo256][GitHub]].
 I am always happy to be contacted by humans as well as high quality marketing
 bots. For that, you can email me on
 [[mailto:christina@octocurious.com][christina@octocurious.com]].
+
+** Recent blog posts
+
+#+INCLUDE: blog/index.org

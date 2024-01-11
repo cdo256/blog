@@ -1,4 +1,9 @@
-* Reach Clarity in your Computer Science Degree
+#+TITLE: Reach Clarity in your Computer Science Degree
+#+SUBTITLE: A personal statement
+#+AUTHOR: Christina O'Donnell
+#+DATE: 2024-01-02
+#+KEYWORDS: clarity, Computer Science, tutoring, degree
+#+OPTIONS: toc:nil
 
 Hi, I'm Christina, and my aim is to give you clarity in your degree, one module
 at a time.
