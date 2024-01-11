@@ -59,8 +59,11 @@ each student every session.
 
 If my background and approach resonate with you, feel free to reach out. Whether
 it's a discussion about potential tutoring or just a chat about the vast world
-of computer science, I'm only a message away.
+of computer science, you can arrange a [[https://www.superprof.co.uk/reach-clarity-your-computer-science-degree-with-online-tuition-from-oxford-grad.html][lesson through Superprof]], or email me
+directly at [[mailto:christina@octocurious.com][christina@octocurious.com]].
 
-Stay curious, and clarity will come!
+I provide a /free/ initial meeting.
 
-# TODO: Add link to superprof.
+I can't wait to meet you,
+ - Christina O'Donnell
+
