@@ -74,11 +74,11 @@ h6 {
 
 h1, h2, h3, h4, h5, h6 {
     font-family: dongle, sans-serif;
-    font-weight: light;
+    color: var(--brand);
 }
 
 main.content {
-    background-color: hsl(187 41% 95% / 1);
+    background-color: hsl(187 41% 95% / 0.7);
     border-radius: 50px;
     padding: 1.5em;
 }
@@ -123,6 +123,7 @@ main.content {
     font-size: 1.5rem;
     line-height: 100%;
     margin: 0.5rem;
+    color: var(--brand-desaturated);
 }
 
 blockquote {

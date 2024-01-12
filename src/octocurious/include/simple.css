@@ -21,6 +21,8 @@
   --preformatted: #444;
   --marked: #ffdd33;
   --disabled: #efefef;
+  --brand: #4a1b45;
+  --brand-desaturated: #4f4f4f;
 }
 
 /* Reset box-sizing */
