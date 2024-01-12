@@ -12,7 +12,7 @@ become clearer Scheme as convenient as C when it comes to systems
 programming and things like dealing with dependency graphs.)
 #+BEGIN_footer
  -- Ludovic Courtès, 2018
-(quoted *grossly* out of context)
+(quoted *grossly* out of [[https://lists.gnu.org/archive/html/guix-devel/2018-04/msg00002.html][context]])
 #+END_footer
 #+END_QUOTE
 
@@ -60,7 +60,7 @@ can simplify various system administration tasks.
     Guix.
     + Source: [[https://lists.gnu.org/archive/html/guix-devel/2018-04/msg00001.html][April Fools' Systemd Patch]]
   - A Google Summer of Code candidate was accepted to improve Shepherd, which
-    would have allowed it to accept unit files and manage cgroups. 
+    would have allowed it to accept unit files and manage cgroups.
   - In 2021, an extended version of the 2018 patch was submitted to the Guix
     project. However, it faced rejection due to compatibility issues and a lack
     of significant benefits for free software packages.
@@ -71,18 +71,26 @@ Here I'm just considering Guix System services, though I expect Guix Home
 services would follow a similar philosophy.
 
 *** Directories
-**** =$GUIX_SYSTEM_PROFILE/lib/systemd/system=
-This directory will contain the package service and other files.
-**** =/etc/systemd/system=
-For enabling and disabling services at each target. There are two options for
-this directory:
- - One is to populate it with store items. This would allow =guix system
-   reconfigure= to set up a running system without requiring the user to
-   manually populate /etc. But it would also mean that =systemctl= wouldn't be
-   able to function, as it works on /etc files.
+Here I'm letting the variable =$GUIX_SYSTEM_PROFILE= correspond to the profile
+of the current running system. This is typically
+=/var/guix/profiles/system/profile/=.
 
-**** =/run/systemd/system=
-To manage runtime services.
+ - =$GUIX_SYSTEM_PROFILE/lib/systemd/system= - This directory will contain the
+   package service and other files.
+ - =/etc/systemd/system= - This can be used for enabling and disabling services
+   at each target. There are two options that I can think of for this directory:
+   + One is to populate it with store items. This would allow =guix system
+     reconfigure= to set up a running system without requiring the user to
+     manually populate =/etc=. But it would also mean that =systemctl= wouldn't
+     be able to function, as it works on /etc files.
+   + Another option is to have any file in =/etc= shadow its corresponding
+     profile item. This would have to be set up such that the existence of
+     =/etc/xyz.target.wants= overrides the corresponding the wants in
+     =$GUIX_SYSTEM_PROFILE/etc/xyz.target.wants=. That way a unit could be
+     removed from wants by the user. Otherwise they'd always have the default
+     wants enabled for each target.
+ - =/run/systemd/system= - This directory could be used to manage runtime
+   services, with no changes envisioned.
 
 *** Strategy
 Each unit will be implemented as a G-expressions on a Scheme
