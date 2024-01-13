@@ -1,26 +1,29 @@
 @font-face {
     font-family: "dongle";
-    src: url("https://octocurious.com/include/dongle-light.ttf") format("truetype");
+    src: local("dongle"),
+         url("https://octocurious.com/include/dongle-light.ttf") format("truetype");
     font-weight: light;
     font-style: normal;
     font-display: swap;
-    size-adjust: 170%;
+    size-adjust: 200%;
 }
 @font-face {
     font-family: "dongle";
-    src: url("https://octocurious.com/include/dongle-regular.ttf") format("truetype");
+    src: local("dongle"),
+         url("https://octocurious.com/include/dongle-regular.ttf") format("truetype");
     font-weight: normal;
     font-style: normal;
     font-display: swap;
-    size-adjust: 170%;
+    size-adjust: 200%;
 }
 @font-face {
     font-family: "dongle";
-    src: url("https://octocurious.com/include/dongle-bold.ttf") format("truetype");
+    src: local("dongle"),
+         url("https://octocurious.com/include/dongle-bold.ttf") format("truetype");
     font-weight: bold;
     font-style: normal;
     font-display: swap;
-    size-adjust: 170%;
+    size-adjust: 200%;
 }
 
 @media only screen and (max-width: 850px) {
