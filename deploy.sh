@@ -1,7 +1,8 @@
 #!/bin/sh
 
 server=algernon
+port=22
 
 ./build.sh
-ssh $server -- rm -rf /var/www/*
-scp -r out/* $server:/var/www/
+ssh -p $port $server -- rm -rf /var/www/*
+scp -r -P $port out/* $server:/var/www/
