@@ -20,34 +20,27 @@ proof to drive project success.
 - Other Skills: Type theory, logic, formal proof, Bayesian statistics, causal modeling
 
 * Projects
-1. Transient-Help Tooltip System: Overcame significant technical debt to
-   implement a two-way communication channel and consistent tooltip appearance
-   across web and Windows clients.
-
+1. Interactive Help System: Wrote client and server code to connect with an OLE
+   object browser instance, requiring a two-way communication channel and
+   maintaining consistent tooltip behaviour and appearance across web and
+   Windows clients.
 2. Greyed Reasons System: Implemented a system logic that displayed the reason
-   why buttons, controls, or menu items were greyed out.
-
+   why buttons, controls, or menu items were greyed out. This required writing a
+   low-level hook to track the location of the mouse relative to nested windows.
 3. Geographical Plotting System Maintenance: Addressed various bugs and
    performance issues in a JavaScript-based geographical plotting system.
-
 4. Text Editor for X: Developed in C using a gap buffer, with strategic memory
    and performance optimizations. [[https://github.com/cdo256/cdoedit][GitHub]]
-
 5. 2D Physics Engine: Built from scratch in C++, featuring collision detection,
    PID controllers, and cross-platform support.
-
 6. Semantic Graphs Research: Working on a meta-theory of language, expressions,
    and structure for potential publication.
-
 7. Quantum Tunneling Simulation: Created using Processing JS, garnered notable
    attention on Reddit.
-
 8. Tetris Clone: Developed using Processing JS with animations, showcased on
    Khan Academy.
-
 9. Twitter Trend Tracker: Collaborative project with roles in server setup,
    website creation using AngularJS, and server logic implementation in Python.
-
 10. Trading Server Development: Rapidly learnt Scala for a hackathon project,
     contributing to a virtual trading server connection.
 
