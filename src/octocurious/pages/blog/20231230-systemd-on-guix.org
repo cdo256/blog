@@ -124,7 +124,7 @@ email at [[mailto:cdo@mutix.org][cdo@mutix.org]]. I really want to know so I don
 trying to hack this darn thing together only to realize that the Shepherd guile
 is inseparably tangled in the threads of Guix's scheme.
 
-While the integration of Systemd into GNU/Guix has faced challenges and
-skepticism, it remains an interesting proposal that highlights the dynamic and
-evolving nature of open-source projects. This exploration sheds light on the
-  complexities and considerations involved in such integrations.
+/Disclaimer: I hope my intended light-hearted humor came across here. I don't
+mean to incite any init-system war. Shepherd is a fantastic peice of
+engineering, I just personally miss the feeling of using Systemd, and it would
+be empowering for users if they could choose their own init systems./
