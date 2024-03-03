@@ -6,8 +6,7 @@
 
 ** Understanding Channels
 [[https://guix.gnu.org/][GNU/Guix]] is a [[https://en.wikipedia.org/wiki/GNU_Guix#Transactional_upgrades][transactional package manager]] and an advanced distribution of the
-GNU system that "respects user freedom"[fn::Except the freedom to use
-proprietary software ;)]. As a powerful tool, Guix allows users to create their
+GNU system that "respects user freedom". As a powerful tool, Guix allows users to create their
 own package repositories in the form of Git repositories called channels.
 
 This allows you to host your own packages to share with the world, or just
@@ -95,7 +94,7 @@ cdo@desktop ~$ gpg -K
 -----------------------------------------
 sec#  rsa3072 2022-09-01 [C]
       358B3178BAC1BA9B105C5CDA344C0AA8A41E474A
-uid           [ultimate] Christina O\'Donnell (master) <cdo@mutix.org>
+uid           [ultimate] Christina O'Donnell (master) <cdo@mutix.org>
 ssb>  rsa2048 2022-09-05 [A] [expires: 2024-09-04]
 ssb>  rsa2048 2022-09-05 [S] [expires: 2024-09-04]
 ssb>  rsa4096 2022-09-20 [E] [expires: 2024-09-19]
@@ -195,13 +194,13 @@ introduction' in the next step.
 #+BEGIN_EXAMPLE shell
 cdo@desktop ~/src/cdo-guix-channel$ git log
 commit 8802797eb54c7bd83be7540446fe2efd6ffb1cb8 (HEAD -> keyring, origin/keyring)
-Author: Christina O\'Donnell <cdo@mutix.org>
+Author: Christina O'Donnell <cdo@mutix.org>
 Date:   Sun Mar 3 17:49:24 2024 +0000
 
     Add cdo key.
 
 commit 45db57dc9add2f175b23ec72c222915baafe879b (origin/master, master)
-Author: Christina O\'Donnell <cdo@mutix.org>
+Author: Christina O'Donnell <cdo@mutix.org>
 Date:   Sun Mar 3 17:36:57 2024 +0000
 
     Initial commit
