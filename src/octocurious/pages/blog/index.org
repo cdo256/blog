@@ -1,8 +1,8 @@
 #+OPTIONS: toc:nil
 
+ - [[https://octocurious.com/pages/blog/20240303-how-to-make-a-guix-channel.html][How to Make your own Guix Channel]]
+   + 2024-03-03
+ - [[https://octocurious.com/pages/blog/20240109-how-to-run-guix-in-vm.html][How to Share =/gnu/store= between a Host and a Guest Guix System]]
+   + 2024-01-10
  - [[https://octocurious.com/pages/blog/20231230-systemd-on-guix.html][Systemd on Guix System - How hard could it be?]]
    + 2023-12-28
-# - [[https://octocurious.com/pages/blog/20240101-how-to-make-guix-channel.html][How to Make Your Own Guix Channel]]
-#   + 2024-01-02 (WIP)
-  - [[https://octocurious.com/pages/blog/20240109-how-to-run-guix-in-vm.html][How to Share =/gnu/store= between a Host and a Guest Guix System]]
-   + 2024-01-10
