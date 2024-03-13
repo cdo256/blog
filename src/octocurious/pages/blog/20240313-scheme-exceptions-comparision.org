@@ -1,0 +1,66 @@
+* A Comparison of Scheme Exception Mechanisms
+
+This post covers the different exception mechanisms in Scheme, and to know which
+to use when you're writing a program in Scheme. Let's start with a bit of
+background and then look at the problem they were trying to solve.
+
+** A bit of background
+
+Okay so, if you don't know, Scheme is not exactly one language but has [[https://get.scheme.org/][many
+implementations]]. Because of this diversity, the collective Scheme community
+developed a system of adding features called "Scheme Requests for
+Implementation" or SRFI for short. This is a place where Scheme developers can
+discuss their needs and come to a common solution and develop an implementation
+publicly, but before it is stable enough to use. The flexibility of the language
+means that nothing special is required to support these features beyond simply
+including the code as a library.
+
+Some dialects such as Guile Scheme added their own exception handling mechanisms
+to fill the need to send errors up the stack without requiring special values in
+the return code. However, maintaining a separate exception mechanism for a few reasons:
+
+*** Structured Exception Objects
+SRFI 35 allows for the definition of condition types, which are akin to records,
+and can contain arbitrary information about the exception. This structured
+approach enables more informative error messages and better error handling, as
+handlers can extract detailed information from the conditions 2 .
+
+*** Inheritance of Condition Types
+Condition types in SRFI 35 can inherit from one another, allowing for a
+hierarchy of error types. This inheritance mechanism makes it possible to write
+generic handlers for broad classes of errors and more specific handlers for
+particular error subtypes 2 .
+
+*** Compatibility with Other Schemes
+SRFI 34 and SRFI 35 are designed to be compatible with the R6RS and R7RS
+standards, making code that uses these SRFIs more portable across different
+Scheme implementations 1 7 .
+
+*** Improved Exception Handling Semantics
+SRFI 34's guard syntax and the raise procedure provide a more intuitive and
+flexible way to handle exceptions compared to the older throw and catch. The
+guard form acts like a cond expression for exceptions, allowing for clear and
+concise exception handling code 3 .
+
+*** Transition to New Standards
+Guile's exception handling has been transitioning from the older throw and catch
+to the newer SRFI-based system. This transition aims to align Guile with the
+broader Scheme community and modern exception handling practices 7 .
+
+*** Better Integration with Threads
+SRFI 34 and SRFI 35 are designed to work well with multithreading (as provided
+by SRFI 18), whereas the older throw and catch might not integrate as seamlessly
+with threads 4 .
+
+*** Forward Compatibility
+Using SRFI 34 and SRFI 35 prepares code for future developments in the Scheme
+language and its standards. As Guile and other Scheme implementations evolve,
+they are likely to support the SRFI-based exception handling mechanisms more
+robustly 7 .
+
+In summary, SRFI 34 and SRFI 35 provide a more modern, structured, and informative system for exception handling that is in line with current Scheme standards and practices, making them preferable to Guile's older throw and catch mechanisms.
+
+
+
+
+The idea behind them is to have a flexible way to 

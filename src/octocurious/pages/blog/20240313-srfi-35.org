@@ -1,0 +1,6 @@
+* Scheme Condition Types Explained
+
+If you're anything like me, you were probably a bit confounded by
+[[https://www.r6rs.org/][R6RS exceptions]] and [[https://srfi.schemers.org/srfi-35/srfi-35.html][SRFI-35 condition types]] and how they relate to each-other
+in Scheme/Racket.
+
