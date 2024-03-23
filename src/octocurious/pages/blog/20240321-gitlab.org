@@ -1,28 +1,16 @@
 * How to set up a GitLab instance on an existing Nginx server
 
-One cute feature of Git is that it can be run as a somewhat rudimentary daemon.
-By simply passing ~--daemon~ to it. This is fantastic as a quick way to get your
-git repos hosted on your own server or VPS.
+I've been running a Git daemon instance on my VPS for a few months and it's
+working fairly well at hosting my repos. If you didn't know, one cute feature of
+Git is that it can be run as a somewhat rudimentary daemon. By simply passing
+~--daemon~ to it. This is fantastic as a quick way to get your git repos hosted
+on your own server or VPS. But if you find yourself longing for more features,
+such as a web interface, then [[https://about.gitlab.com/install/][GitLab]] is a reasonable alternative [fn::[[https://sourcehut.org/][Source Hut]]
+and [[https://about.gitea.com/][Gitea]], both of them free and open source.].
 
-However, there are quite a few limitations that makes it less than ideal for
-some use cases.For example:
-
- - *Lack of Integrated Tools*: GitLab and GitHub provide a suite of integrated
-   tools such as issue tracking, code review, continuous integration and
-   deployment (CI/CD), and project management features. ~git --daemon~, on the
-   other hand, only serves Git repositories over the network and does not offer
-   these additional tools.
- - User Interface and Experience: Both GitLab and GitHub offer user-friendly web
-   interfaces that make it easier to manage projects, collaborate with others,
-   and visualize code changes. git --daemon does not provide a web interface; it
-   is a command-line tool that serves repositories in a more basic and less
-   interactive way
-   *TODO*
-
-There are also a few caveats however:
- - *GitLab is much more resource intensive*
-
-** Getting set up
+This post will cover the installation procedure on a 'self-hosted' VPS if you
+already have an Nginx web-server running. If you don't then the installation
+procedure should be more straight-forward, simply following the official [[https://docs.gitlab.com/omnibus/installation/][GitLab installation procedure]].
 
 Warning: This guide involves chaning things on your server that may not be easy
 to reverse. As always, ensure you have *recent* and *tested* backups before
@@ -146,7 +134,9 @@ explanation of what will and won't work as values.
 make sure that your DNS is set up to point 'A' records of your domain to the
 server gitlab will be running on.
 
-Now I need to take down my existing Git-daemon setup to proceed.
+Now I need to take down my existing Git-daemon setup to proceed. If you don't
+have an existing Git-daemon set up on your server, then you can safely skip the
+next section.
 
 ** Taking down the existing Git-daemon (optional)
 
@@ -213,7 +203,13 @@ Now it should seemlessly work with SSL!
 
 The final step before we're ready to use GitLab is to get our existing Nginx
 server (which is currently offline) to serve other webpages while GitLab is
-running. We do that through the means of a 'reverse proxy'.
+running. This can either be done through means of a 'reverse proxy', or by
+telling GitLab to serve its pages directly on our existing Nginx server.
+
+The reverse-proxy route is somewhat fiddly, but should work better once GitLab
+is up and running, allowing GitLab updates to change the Nginx server settings.
+Alternatively, you can skip to the next section which covers how to set up a
+non-bundled web-server.
 
 ** Setting up reverse proxy using Nginx
 
@@ -228,7 +224,8 @@ the response. For more information, Nginx has a [[https://www.nginx.com/resource
 You'll want to save a copy of your configuration because this could get hairy!
 
 First you need a port number that's not being used for anything else. Anything
-above 1000 but under 65000 is likely to work without clashing. I chose 5189.
+above 1000 but under 65000 is likely to work without clashing. I arbitrarily
+chose 6236.
 
 #+BEGIN_SRC
 server {
@@ -236,7 +233,7 @@ server {
         #listen 80;
         listen 443 ssl;
         location / {
-                proxy_pass http://git.mutix.org:5189;
+                proxy_pass http://git.mutix.org:6236;
                 proxy_set_header Host $host;
                 proxy_set_header X-Real-IP $remote_addr;
                 proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -260,11 +257,13 @@ server {
 
 nginx['enable'] = true
 
-nginx['listen_port'] = 5189
+nginx['listen_port'] = 6236
 
-#nginx['listen_https'] = true
+nginx['listen_https'] = false
 
 nginx['proxy_protocol'] = true
+
+nginx['real_ip_trusted_addresses'] = [ "127.0.0.0/8", "YOUR_PUBLIC_IP/32"]
 #+END_SRC
 
 Now reconfigure GitLab again and you won't be able to access it anymore. You'll
