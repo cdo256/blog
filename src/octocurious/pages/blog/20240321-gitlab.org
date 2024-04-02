@@ -1,4 +1,6 @@
-* How to set up a GitLab instance on an existing Nginx server
+#+TITLE: How to Set up a GitLab Instance on an Existing Nginx Server
+#+AUTHOR: Christina O'Donnell
+#+DATE: 2024-03-21
 
 I've been running a Git daemon instance on my VPS for a few months and it's
 working fairly well at hosting my repos. If you didn't know, one cute feature of

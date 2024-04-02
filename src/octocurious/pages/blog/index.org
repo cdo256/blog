@@ -1,5 +1,7 @@
 #+OPTIONS: toc:nil
 
+ - [[https://octocurious.com/pages/blog/20240321-gitlab.html][How to Set up a GitLab Instance on an Existing Nginx Server]]
+   + 2024-03-21
  - [[https://octocurious.com/pages/blog/20240303-how-to-make-a-guix-channel.html][How to Make your own Guix Channel]]
    + 2024-03-03
  - [[https://octocurious.com/pages/blog/20240109-how-to-run-guix-in-vm.html][How to Share =/gnu/store= between a Host and a Guest Guix System]]
