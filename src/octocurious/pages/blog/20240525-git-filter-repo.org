@@ -11,7 +11,7 @@ profile page.
 
 There's only one problem: You never checked to see whether there were any
 passwords or other secrets in your history. Now, hopefully you remembered before
-you made the repo public because there are [[https://trufflesecurity.com/blog/thousands-of-github-comments-leak-live-api-keys][inumerable bots]] scraping git hosting
+you made the repo public because there are [[https://trufflesecurity.com/blog/thousands-of-github-comments-leak-live-api-keys][innumerable bots]] scraping git hosting
 platforms for passwords, API-keys, and other secrets. [fn::If not, run GitLeaks
 and change those secrets as soon as possible. If you're lucky, then no one will
 have used up your AWS credits mining crypto!]
@@ -25,13 +25,16 @@ You can usually install both of these using your favorite package manager.
 [fn::Unfortunately not Guix yet.] See Repology for
 [[https://repology.org/project/gitleaks/versions][gitleaks]] and [[https://repology.org/project/git-filter-repo/versions][git-filter-repo]].
 
+For more on Git security and rewriting history, see [[https://git-scm.com/book/en/v2/Git-Tools-Rewriting-History#_git_rewriting_history][Pro Git - Git Security]].
+
 ** Finding secrets
 Gitleaks is a powerful Static Application Security Testing (SAST) tool designed
 to detect and prevent hardcoded secrets like passwords, API keys, and tokens in
 git repositories. It's an essential tool for developers and security teams to
 safeguard sensitive information and comply with security best practices. This
 guide will walk you through the basics of using Gitleaks, from installation to
-running scans on your repositories.
+running scans on your repositories. For secrets management best practices, refer
+to the [[https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html][OWASP Cheat Sheet]].
 
 Before we start, it is recommended to have a fresh clone:
 
@@ -71,11 +74,12 @@ filter-branch= and BFG Repo-Cleaner for rewriting Git history. It allows you to
 modify your repository's history, including removing files, replacing text
 within files, and even changing commit metadata. =git filter-repo= is designed
 to be safer and faster than its predecessors, making it the recommended tool for
-history rewriting tasks.
+history rewriting tasks. For detailed documentation, see [[https://github.com/newren/git-filter-repo/blob/main/Documentation/git-filter-repo.txt][git filter-repo
+Documentation]].
 
 As mentioned above, you'll want to use a fresh clone of the repository you
 intend to modify. This is because =git filter-repo= works by rewriting the
-*entire repo*, so the usual gaurantees of being able to fish out the old version
+*entire repo*, so the usual guarantees of being able to fish out the old version
 with [[https://git-scm.com/docs/git-reflog][=git reflog=]] and the like. Your repo will be rewritten in its entirety.
 
 There are different commands, depending on the type of secret you'd like to
@@ -136,6 +140,9 @@ their local histories will now be incompatible with the rewritten history.
 And if you haven't already, you'll need to change/invalidate all passwords/API
 keys that were on the repo. This is good practice even if the repo hasn't been
 made public yet, in case someone retains a copy with the old history.
+
+For more information on verifying the removal of sensitive data, consult this
+Stack Overflow discussion: [[https://stackoverflow.com/questions/5302520/how-do-i-verify-removal-of-sensitive-data-from-a-git-repository][Stack Overflow - Removing Sensitive Data]].
 
 ** Conclusion
 =git filter-repo= is a powerful tool for removing sensitive data from
