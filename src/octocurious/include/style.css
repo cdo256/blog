@@ -26,15 +26,36 @@
     size-adjust: 200%;
 }
 
-@media only screen and (max-width: 850px) {
+@media only screen and (max-width: 950px) {
     #header {
         flex-direction: column;
     }
 }
 
-:root {
-    --bg: hsl(191 60% 93% / 1);
+:root,
+::backdrop {
+    /* Set sans-serif & mono fonts */
+    --sans-font: -apple-system, BlinkMacSystemFont, "Avenir Next", Avenir,
+                 "Nimbus Sans L", Roboto, "Noto Sans", "Segoe UI", Arial, Helvetica,
+                 "Helvetica Neue", sans-serif;
+    --mono-font: Consolas, Menlo, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+    --standard-border-radius: 10px;
+
+    --bg: #edf6f7aa;
     --accent-bg: transparent;
+    --accent: #3f00d2;
+    --accent-hover: #3f00d2;
+    --brand: #7f1373;
+    --brand-desaturated: #4f4f4f;
+    --backdrop: linear-gradient(0deg, #437f7c 0%, #e2f4f8 100%);
+    --text: #212121;
+    --text-light: #585858;
+    --border: #898EA4;
+    --accent-text: var(--bg);
+    --code: #d81b60;
+    --preformatted: #444;
+    --marked: #ffdd33;
+    --disabled: #efefef;
 }
 
 body {
@@ -44,7 +65,7 @@ body {
     grid-template-columns: 1fr min(50rem,90%) 1fr;
     grid-template-rows: min-content min-content min-content 1fr;
     margin: 0;
-    background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgb(67 127 124) 30%, hsl(191 60% 93% / 1) 100%);
+    background: var(--backdrop);
     font-family: sans-serif;
     min-height: 100vh;
 }
@@ -81,11 +102,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 main.content {
-    background-color: hsl(187 41% 95% / 0.7);
+    background-color: var(--bg);
     border-radius: 50px;
     padding: 1.5em;
 }
-
 
 #header {
     display: flex;
@@ -153,4 +173,3 @@ blockquote footer {
     display: block;
     text-align: right;
 }
-
