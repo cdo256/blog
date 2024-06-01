@@ -1,7 +1,7 @@
 @font-face {
     font-family: "dongle";
     src: local("dongle"),
-         url("https://octocurious.com/include/dongle-light.ttf") format("truetype");
+         url("https://octocurious.com/include/dongle-ansi-light.ttf") format("truetype");
     font-weight: light;
     font-style: normal;
     font-display: swap;
@@ -10,7 +10,7 @@
 @font-face {
     font-family: "dongle";
     src: local("dongle"),
-         url("https://octocurious.com/include/dongle-regular.ttf") format("truetype");
+         url("https://octocurious.com/include/dongle-ansi-regular.ttf") format("truetype");
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -19,7 +19,7 @@
 @font-face {
     font-family: "dongle";
     src: local("dongle"),
-         url("https://octocurious.com/include/dongle-bold.ttf") format("truetype");
+         url("https://octocurious.com/include/dongle-ansi-bold.ttf") format("truetype");
     font-weight: bold;
     font-style: normal;
     font-display: swap;
