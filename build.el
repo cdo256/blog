@@ -17,6 +17,8 @@
 
 (package-install 'htmlize)
 (require 'ox-publish)
+(use-package 'ox-hugo
+  :ensure t)
 
 (defun html-publish-to-html (plist filename pub-dir)
   "Publish an HTML file with a preamble and postamble."
