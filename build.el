@@ -37,34 +37,14 @@
 (setq org-publish-project-alist
       `(("octocurious:main"
          :recursive t
-         :base-directory "./src/octocurious"
-         :publishing-directory "./out/octocurious"
-         :publishing-function org-html-publish-to-html
+         :base-directory "./org"
+         :publishing-directory "./content"
+         :publishing-function org-hugo-publish-as-md
          :with-creator t
          :with-toc f
          :section-numbers nil
          :email "christina@octocurious.com"
-         :language "English"
-         :html-head ,(file-to-string "./src/octocurious/head.html")
-         :html-preamble ,(file-to-string "./src/octocurious/header.html")
-         :html-postamble ,(file-to-string "./src/octocurious/footer.html")
-         :html-divs ((preamble "header" "header")
-                     (content "main" "content")
-                     (postamble "footer" "footer")))
-
-        ("octocurious:media"
-         :recursive t
-         :base-directory "./src/octocurious/media"
-         :publishing-directory "./out/octocurious/media"
-         :publishing-function org-publish-attachment
-         :base-extension ".*")
-
-        ("octocurious:include"
-         :recursive t
-         :base-directory "./src/octocurious/include"
-         :publishing-directory "./out/octocurious/include"
-         :publishing-function org-publish-attachment
-         :base-extension ".*")))
+         :language "English")))
 
 (org-publish-all t)
 
