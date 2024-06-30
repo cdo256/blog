@@ -1,0 +1,7 @@
+baseURL = 'https://octocurious.com/'
+languageCode = 'en-us'
+title = 'Octocurious'
+theme = 'paper'
+
+[markup.goldmark.render]
+unsafe = true
