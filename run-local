@@ -1,2 +1,9 @@
 #!/bin/sh
-hugo server --noHTTPCache --buildDrafts --navigateToChanged --port=2222 &
+pkill hugo
+hugo server \
+     --noHTTPCache \
+     --buildDrafts \
+     --navigateToChanged \
+     --port=2222 \
+     -- disableFastRenderer
+     --logLevel=debug &

@@ -1,8 +1,12 @@
 { pkgs ? import <nixpkgs> {}}:
 pkgs.mkShell {
-  nativeBuildInputs = [
-    pkgs.emacs
-    pkgs.hugo
-    pkgs.git
+  nativeBuildInputs = with pkgs; [
+    emacs
+    hugo
+    git
+    pandoc
+    emacsPackages.htmlize
+    #emacsPackages.ox-publish
+    emacsPackages.ox-hugo
   ];
 }
