@@ -5,5 +5,5 @@ hugo server \
      --buildDrafts \
      --navigateToChanged \
      --port=2222 \
-     -- disableFastRenderer
+     --disableFastRender \
      --logLevel=debug &
