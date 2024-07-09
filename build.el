@@ -1,37 +1,56 @@
-;; Adapted from https://systemcrafters.net/publishing-websites-with-org-mode/building-the-site/
+;;; build.el --- Description -*- lexical-binding: t; -*-
+;;
+;; Copyright (C) 2021 Shom Bandopadhaya
+;; Copyright (C) 2024 Christina O'Donnell
+;;
+;; Author: Shom Bandopadhaya <https://github.com/shombando>
+;; Maintainer: Christina O'Donnell <cdo@mutix.org>
+;; Created: October 04, 2021
+;; Modified: July 09, 2024
+;; Version: 0.0.1
+;; Keywords: emacs org hugo
+;; Homepage: https://git.sr.ht
+;; Package-Requires: ((emacs "27.2"))
+;;
+;; This file is not part of GNU Emacs.
+;;
+;;; Commentary: automated build for ox-hugo org mode website
+;;
+;;  Description
+;;
+;;; Code:
 
-;; (require 'package)
-;; (setq package-user-dir (expand-file-name "./.packages"))
-;; (setq package-archives '(("melpa" . "https://melpa.org/packages/")
-;;                          ("nongnu" . "https://elpa.nongnu.org/packages/")
-;;                          ("elpa" . "https://elpa.gnu.org/packages/")))
+;; Setup
+(message "\n==== Setup package repos ====")
+(require 'package)
+(setq package-user-dir (expand-file-name "./.packages"))
+(setq package-archives '(("melpa" . "https://melpa.org/packages/")
+                         ("elpa" . "https://elpa.gnu.org/packages/")))
 
-;; (package-initialize)
-;; (unless package-archive-contents
-;;   (package-refresh-contents))
+;; Initialize the package system
+(package-initialize)
+(unless package-archive-contents
+  (package-refresh-contents))
 
-;; (defun file-to-string (file)
-;;   "Read the content of FILE and return it as a string."
-;;   (with-temp-buffer
-;;     (insert-file-contents file)
-;;     (buffer-string)))
-
-(require 'htmlize)
-(require 'ox-publish)
+;; Install and dependencies
+(message "\n==== Installing depedencies ====")
+(package-install 'ox-hugo)
+(require 'org-id)
 (require 'ox-hugo)
 
-(setq org-publish-project-alist
-      `(("octocurious:main"
-         :recursive t
-         :base-directory "./org"
-         :publishing-directory "./content"
-         :publishing-function org-hugo-export-as-md
-         :with-creator t
-         :with-toc f
-         :section-numbers nil
-         :email "christina@octocurious.com"
-         :language "English")))
+;; Export content from org to Hugo md
+(message "\n==== Exporting Hugo markdown ====")
+(with-current-buffer (find-file "./main.org")
+  (org-hugo-export-wim-to-md :all-subtrees nil :visible-only nil))
 
-(org-publish-all t)
+(with-current-buffer (find-file "./posts.org")
+  (org-hugo-export-wim-to-md :all-subtrees nil :visible-only nil))
+(org-babel-tangle-file "./posts.org")
 
-(message "Build complete!")
+(with-current-buffer (find-file "./start.org")
+  (org-hugo-export-wim-to-md :all-subtrees nil :visible-only nil))
+
+
+(message "\n==== Export complete ====")
+
+;;; build.el ends here
