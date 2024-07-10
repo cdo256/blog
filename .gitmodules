@@ -1,0 +1,3 @@
+[submodule "themes/octohugious"]
+	path = themes/octohugious
+	url = https://github.com/cdo256/octohugious
