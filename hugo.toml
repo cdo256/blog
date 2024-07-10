@@ -1,16 +1,7 @@
 baseURL = 'https://octocurious.com/'
 languageCode = 'en-us'
 title = 'Octocurious'
-theme = 'black'
+theme = 'octohugious'
 
 [markup.goldmark.render]
 unsafe = true
-
-# [module]
-    # [[module.mounts]]
-    #     source = 'static'
-    #     target = 'static/include'
-    # [[module.mounts]]
-    #     source = 'content'
-    #     target = 'content/pages'
-

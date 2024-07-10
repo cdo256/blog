@@ -47,8 +47,8 @@
   (org-hugo-export-wim-to-md :all-subtrees nil :visible-only nil))
 (org-babel-tangle-file "./posts.org")
 
-(with-current-buffer (find-file "./start.org")
-  (org-hugo-export-wim-to-md :all-subtrees nil :visible-only nil))
+;; (with-current-buffer (find-file "./start.org")
+;;   (org-hugo-export-wim-to-md :all-subtrees nil :visible-only nil))
 
 
 (message "\n==== Export complete ====")

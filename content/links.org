@@ -1,7 +1,0 @@
-#+TITLE: Links
-#+AUTHOR: Christina O'Donnell
-#+DATE: 2024-01-03
-#+KEYWORDS: Guix, hacking
-# +OPTIONS: toc:nil
-
- - 
