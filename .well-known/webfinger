@@ -1,0 +1,23 @@
+{
+  "subject": "acct:octocurious@functional.cafe",
+  "aliases": [
+    "https://functional.cafe/@octocurious",
+    "https://functional.cafe/users/octocurious"
+  ],
+  "links": [
+    {
+      "rel": "http://webfinger.net/rel/profile-page",
+      "type": "text/html",
+      "href": "https://functional.cafe/@octocurious"
+    },
+    {
+      "rel": "self",
+      "type": "application/activity+json",
+      "href": "https://functional.cafe/users/octocurious"
+    },
+    {
+      "rel": "http://ostatus.org/schema/1.0/subscribe",
+      "template": "https://functional.cafe/authorize_interaction?uri={uri}"
+    }
+  ]
+}
