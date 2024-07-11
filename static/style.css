@@ -1,62 +1,9 @@
-@font-face {
-    font-family: "dongle";
-    src: local("dongle"),
-         url("/include/dongle-ansi-light.ttf") format("truetype");
-    font-weight: light;
-    font-style: normal;
-    font-display: swap;
-    size-adjust: 200%;
-}
-@font-face {
-    font-family: "dongle";
-    src: local("dongle"),
-         url("/include/dongle-ansi-regular.ttf") format("truetype");
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-    size-adjust: 200%;
-}
-@font-face {
-    font-family: "dongle";
-    src: local("dongle"),
-         url("/include/dongle-ansi-bold.ttf") format("truetype");
-    font-weight: bold;
-    font-style: normal;
-    font-display: swap;
-    size-adjust: 200%;
-}
-
 @media only screen and (max-width: 950px) {
     body > header {
         flex-direction: column;
     }
 }
 
-:root,
-::backdrop {
-    /* Set sans-serif & mono fonts */
-    --sans-font: -apple-system, BlinkMacSystemFont, "Avenir Next", Avenir,
-                 "Nimbus Sans L", Roboto, "Noto Sans", "Segoe UI", Arial, Helvetica,
-                 "Helvetica Neue", sans-serif;
-    --mono-font: Consolas, Menlo, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
-    --standard-border-radius: 10px;
-
-    --bg: #edf6f7aa;
-    --accent-bg: transparent;
-    --accent: #3f00d2;
-    --accent-hover: #3f00d2;
-    --brand: #7f1373;
-    --brand-desaturated: #4f4f4f;
-    --backdrop: linear-gradient(0deg, #437f7c 0%, #e2f4f8 100%);
-    --text: #212121;
-    --text-light: #585858;
-    --border: #898EA4;
-    --accent-text: var(--bg);
-    --code: #d81b60;
-    --preformatted: #444;
-    --marked: #ffdd33;
-    --disabled: #efefef;
-}
 
 body {
     font-size: 1rem;

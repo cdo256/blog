@@ -1,7 +1,14 @@
 baseURL = 'https://octocurious.com/'
 languageCode = 'en-us'
 title = 'Octocurious'
-theme = 'octohugious'
+theme = 'hugo-book'
 
 [markup.goldmark.render]
 unsafe = true
+
+[menu]
+  [[menu.header]]
+    identifier = "home"
+    name = "Home"
+    url = "/"
+    weight = 1
