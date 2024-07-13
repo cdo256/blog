@@ -40,12 +40,12 @@
 
 ;; Export content from org to Hugo md
 (message "\n==== Exporting Hugo markdown ====")
-(with-current-buffer (find-file "./main.org")
+(with-current-buffer (find-file "./org/main.org")
   (org-hugo-export-wim-to-md :all-subtrees nil :visible-only nil))
 
-(with-current-buffer (find-file "./posts.org")
+(with-current-buffer (find-file "./org/posts.org")
   (org-hugo-export-wim-to-md :all-subtrees nil :visible-only nil))
-(org-babel-tangle-file "./posts.org")
+(org-babel-tangle-file "./org/posts.org")
 
 ;; (with-current-buffer (find-file "./start.org")
 ;;   (org-hugo-export-wim-to-md :all-subtrees nil :visible-only nil))
