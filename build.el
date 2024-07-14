@@ -38,14 +38,22 @@
 (require 'org-id)
 (require 'ox-hugo)
 
+(setq org-hugo-base-dir default-directory)
+(setq org-hugo-default-section-directory "")
+
+(let ((files (directory-files-recursively "./org/main" "\\.org$")))
+  (dolist (file files)
+    (with-current-buffer (find-file-noselect file)
+      (org-hugo-export-wim-to-md :all-subtrees nil :visible-only nil))))
+
 ;; Export content from org to Hugo md
 (message "\n==== Exporting Hugo markdown ====")
-(with-current-buffer (find-file "./org/main.org")
-  (org-hugo-export-wim-to-md :all-subtrees nil :visible-only nil))
+;; (with-current-buffer (find-file "./org/main.org")
+;;   (org-hugo-export-wim-to-md :all-subtrees nil :visible-only nil))
 
-(with-current-buffer (find-file "./org/posts.org")
-  (org-hugo-export-wim-to-md :all-subtrees nil :visible-only nil))
-(org-babel-tangle-file "./org/posts.org")
+;; (with-current-buffer (find-file "./org/posts.org")
+;;   (org-hugo-export-wim-to-md :all-subtrees nil :visible-only nil))
+;; (org-babel-tangle-file "./org/posts.org")
 
 ;; (with-current-buffer (find-file "./start.org")
 ;;   (org-hugo-export-wim-to-md :all-subtrees nil :visible-only nil))

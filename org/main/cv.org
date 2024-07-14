@@ -1,9 +1,13 @@
-#+TITLE: Christina O'Donnell
+#+TITLE: CV - Christina O'Donnell
+#+HUGO_SECTION: cv
+#+EXPORT_FILE_NAME: index
+#+EXPORT_HUGO_MENU: :menu "header" :title CV
 #+EMAIL: cdo@mutix.org
 #+PHONE: 07742576495
 #+OPTIONS: toc:nil num:nil
 #+LATEX_CLASS: article
 #+LATEX_CLASS_OPTIONS: [a4paper,10pt]
+
 
 * Professional Summary
 A dedicated computer science enthusiast with a diverse skill set spanning

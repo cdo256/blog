@@ -1,4 +1,3 @@
-#+hugo_base_dir: .
 #+hugo_level_offset: 0
 #+seq_todo: DRAFT DONE
 #+startup: indent

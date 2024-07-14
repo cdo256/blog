@@ -1,3 +1,8 @@
+:PROPERTIES:
+:EXPORT_FILE_NAME: _index
+:EXPORT_HUGO_MENU: :menu "header" :title Home
+:END:
+
 #+TITLE: Octocurious
 #+OPTIONS: toc:nil
 
@@ -23,6 +28,6 @@ marketing bots!) For that, you can email me on [[mailto:christina@octocurious.co
 equivalently [[mailto:cdo@mutix.org][cdo@mutix.org]]).
 
 ** Recent blog posts
-#+INCLUDE: blog/index.org
+*** TODO
 
 See the [[https://octocurious.com/pages/blog.html][the full list of blog posts]].
