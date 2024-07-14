@@ -1,12 +1,10 @@
-:PROPERTIES:
-:EXPORT_FILE_NAME: links
-:EXPORT_HUGO_MENU: :menu "header" :title Links
-:END:
-
 #+TITLE: Links
+#+HUGO_LINKTITLE: Home
+#+EXPORT_FILE_NAME: links
+#+EXPORT_HUGO_MENU: :menu "header" :title Links
 #+AUTHOR: Christina O'Donnell
 #+DATE: 2024-01-03
 #+KEYWORDS: Guix, hacking
-# +OPTIONS: toc:nil
+#+OPTIONS: toc:nil
 
- - 
+foo

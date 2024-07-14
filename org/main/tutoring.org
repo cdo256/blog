@@ -1,9 +1,7 @@
-:PROPERTIES:
-:EXPORT_FILE_NAME: tutoring
-:EXPORT_HUGO_MENU: :menu "header" :title Tutoring
-:END:
-
 #+TITLE: Reach Clarity in your Computer Science Degree
+#+HUGO_LINKTITLE: Tutoring
+#+EXPORT_FILE_NAME: tutoring
+#+EXPORT_HUGO_MENU: :menu "header" :title Tutoring
 #+SUBTITLE: A personal statement
 #+AUTHOR: Christina O'Donnell
 #+DATE: 2024-01-02

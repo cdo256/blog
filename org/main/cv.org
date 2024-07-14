@@ -1,5 +1,5 @@
 #+TITLE: CV - Christina O'Donnell
-#+HUGO_SECTION: cv
+#+HUGO_LINKTITLE: CV
 #+EXPORT_FILE_NAME: index
 #+EXPORT_HUGO_MENU: :menu "header" :title CV
 #+EMAIL: cdo@mutix.org

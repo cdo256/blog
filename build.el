@@ -46,6 +46,13 @@
     (with-current-buffer (find-file-noselect file)
       (org-hugo-export-wim-to-md :all-subtrees nil :visible-only nil))))
 
+(setq org-hugo-default-section-directory "blog")
+
+(let ((files (directory-files-recursively "./org/blog" "\\.org$")))
+  (dolist (file files)
+    (with-current-buffer (find-file-noselect file)
+      (org-hugo-export-wim-to-md :all-subtrees nil :visible-only nil))))
+
 ;; Export content from org to Hugo md
 (message "\n==== Exporting Hugo markdown ====")
 ;; (with-current-buffer (find-file "./org/main.org")

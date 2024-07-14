@@ -1,9 +1,7 @@
-:PROPERTIES:
-:EXPORT_FILE_NAME: _index
-:EXPORT_HUGO_MENU: :menu "header" :title Home
-:END:
-
 #+TITLE: Octocurious
+#+HUGO_LINKTITLE: Home
+#+EXPORT_FILE_NAME: _index
+#+EXPORT_HUGO_MENU: :menu "header" :title Home
 #+OPTIONS: toc:nil
 
 Greetings, Internet! I'm Christina O'Donnell, a computer science tutor and

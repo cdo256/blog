@@ -1,3 +1,9 @@
+#+TITLE: Blog
+#+HUGO_LINKTITLE: Blog
+#+EXPORT_HUGO_MENU: :menu "blog" :title "Blog"
+#+AUTHOR: Christina O'Donnell
+#+DATE: 2023-12-30
+#+DESCRIPTION: A preliminary investigation
 #+OPTIONS: toc:nil
 
  - [[https://octocurious.com/pages/blog/20240525-git-filter-repo.html][How to Erase Secrets in Git Repos with =git filter-repo=]]

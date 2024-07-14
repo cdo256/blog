@@ -1,4 +1,6 @@
 #+TITLE: Systemd on Guix System - How hard could it be?
+#+HUGO_LINKTITLE: Systemd on Guix System - How hard could it be?
+#+EXPORT_HUGO_MENU: :menu "blog" :title "Systemd on Guix System"
 #+AUTHOR: Christina O'Donnell
 #+DATE: 2023-12-30
 #+KEYWORDS: Systemd, Guix, Guix System, Linux, open source

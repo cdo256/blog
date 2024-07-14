@@ -1,4 +1,5 @@
 baseURL = 'https://octocurious.com/'
 languageCode = 'en-us'
 title = 'Octocurious'
-theme = 'hugo-book'
+theme = 'octohugious'
+sectionPagesMenu = 'header'
