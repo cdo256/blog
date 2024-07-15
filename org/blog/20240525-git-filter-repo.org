@@ -1,7 +1,8 @@
 #+TITLE: How to Erase Secrets in Git Repos with =git filter-repo=
-#+AUTHOR: Christina O'Donnell
+#+HUGO_SECTION: blog/foo
+#+HUGO_LINKTITLE: foo
+#+EXPORT_FILE_NAME: index
 #+DATE: 2024-05-25
-#+KEYWORDS: git, security
 #+OPTIONS: toc:nil
 
 Here's the scenario: you have your dotfiles in a private repo that you've been

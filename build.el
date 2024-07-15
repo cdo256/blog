@@ -47,6 +47,7 @@
       (org-hugo-export-wim-to-md :all-subtrees nil :visible-only nil))))
 
 (setq org-hugo-default-section-directory "blog")
+;;(setq org-hugo-section "")
 
 (let ((files (directory-files-recursively "./org/blog" "\\.org$")))
   (dolist (file files)

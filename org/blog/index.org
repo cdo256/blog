@@ -1,5 +1,6 @@
 #+TITLE: Blog
 #+HUGO_LINKTITLE: Blog
+#+HUGO_SECTION: blog
 #+EXPORT_HUGO_MENU: :menu "blog" :title "Blog"
 #+AUTHOR: Christina O'Donnell
 #+DATE: 2023-12-30
