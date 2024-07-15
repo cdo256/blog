@@ -11,7 +11,7 @@ emacs -Q --script build.el
 echo ""
 
 echo "==== Build with Hugo ===="
-hugo --ignoreCache -Dv
+hugo --ignoreCache -D
 echo ""
 
 echo "==== Copy .well-known for webfinger ===="
