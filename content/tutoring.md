@@ -1,12 +1,11 @@
-#+TITLE: Reach Clarity in your Computer Science Degree
-#+HUGO_LINKTITLE: Tutoring
-#+EXPORT_FILE_NAME: tutoring
-#+EXPORT_HUGO_MENU: :menu "header" :title Tutoring
-#+SUBTITLE: A personal statement
-#+AUTHOR: Christina O'Donnell
-#+DATE: 2024-01-02
-#+KEYWORDS: clarity, Computer Science, tutoring, degree
-#+OPTIONS: toc:nil
++++
+title = "Reach Clarity in your Computer Science Degree"
+author = ["Christina O'Donnell"]
+date = 2024-01-02
+keywords = ["clarity", [",", "Computer"], "Science", [",", "tutoring"], [",", "degree"]]
+linkTitle = "Tutoring"
+draft = false
++++
 
 Hi, I'm Christina, and my aim is to give you clarity in your degree, one module
 at a time.
@@ -62,12 +61,11 @@ each student every session.
 
 If my background and approach resonate with you, feel free to reach out. Whether
 it's a discussion about potential tutoring or just a chat about the vast world
-of computer science, you can arrange a [[https://www.superprof.co.uk/reach-clarity-your-computer-science-degree-with-online-tuition-from-oxford-grad.html][lesson through Superprof]], or email me
-directly at [[mailto:christina@octocurious.com][christina@octocurious.com]].
+of computer science, you can arrange a [lesson through Superprof](https://www.superprof.co.uk/reach-clarity-your-computer-science-degree-with-online-tuition-from-oxford-grad.html), or email me
+directly at [christina@octocurious.com](mailto:christina@octocurious.com).
 
-I provide a /free/ initial meeting.
+I provide a _free_ initial meeting.
 
 I can't wait to meet you!
 
-/Christina O'Donnell/
-
+_Christina O'Donnell_

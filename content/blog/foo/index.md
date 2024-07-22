@@ -1,9 +1,10 @@
-#+TITLE: How to Erase Secrets in Git Repos with =git filter-repo=
-#+HUGO_SECTION: blog/foo
-#+HUGO_LINKTITLE: foo
-#+EXPORT_FILE_NAME: index
-#+DATE: 2024-05-25
-#+OPTIONS: toc:nil
++++
+title = "How to Erase Secrets in Git Repos with git filter-repo"
+author = ["Christina O'Donnell"]
+date = 2024-05-25
+linkTitle = "foo"
+draft = false
++++
 
 Here's the scenario: you have your dotfiles in a private repo that you've been
 maintaining for years, and after a lot of polishing and removing secrets, you're
@@ -12,43 +13,44 @@ profile page.
 
 There's only one problem: You never checked to see whether there were any
 passwords or other secrets in your history. Now, hopefully you remembered before
-you made the repo public because there are [[https://trufflesecurity.com/blog/thousands-of-github-comments-leak-live-api-keys][innumerable bots]] scraping git hosting
-platforms for passwords, API-keys, and other secrets. [fn::If not, run GitLeaks
-and change those secrets as soon as possible. If you're lucky, then no one will
-have used up your AWS credits mining crypto!]
+you made the repo public because there are [innumerable bots](https://trufflesecurity.com/blog/thousands-of-github-comments-leak-live-api-keys) scraping git hosting
+platforms for passwords, API-keys, and other secrets.&nbsp;[^fn:1]
 
-** Installation
 
-In this article, we'll be using [[https://github.com/gitleaks/gitleaks][Gitleaks]] to detect secrets in a repo, and =git
-filter-repo= to remove it without losing important history.
+## Installation {#installation}
+
+In this article, we'll be using [Gitleaks](https://github.com/gitleaks/gitleaks) to detect secrets in a repo, and `git
+filter-repo` to remove it without losing important history.
 
 You can usually install both of these using your favorite package manager.
-[fn::Unfortunately not Guix yet.] See Repology for
-[[https://repology.org/project/gitleaks/versions][gitleaks]] and [[https://repology.org/project/git-filter-repo/versions][git-filter-repo]].
+[^fn:2] See Repology for
+[gitleaks](https://repology.org/project/gitleaks/versions) and [git-filter-repo](https://repology.org/project/git-filter-repo/versions).
 
-For more on Git security and rewriting history, see [[https://git-scm.com/book/en/v2/Git-Tools-Rewriting-History#_git_rewriting_history][Pro Git - Git Security]].
+For more on Git security and rewriting history, see [Pro Git - Git Security](https://git-scm.com/book/en/v2/Git-Tools-Rewriting-History#_git_rewriting_history).
 
-** Finding secrets
+
+## Finding secrets {#finding-secrets}
+
 Gitleaks is a powerful Static Application Security Testing (SAST) tool designed
 to detect and prevent hardcoded secrets like passwords, API keys, and tokens in
 git repositories. It's an essential tool for developers and security teams to
 safeguard sensitive information and comply with security best practices. This
 guide will walk you through the basics of using Gitleaks, from installation to
 running scans on your repositories. For secrets management best practices, refer
-to the [[https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html][OWASP Cheat Sheet]].
+to the [OWASP Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html).
 
 Before we start, it is recommended to have a fresh clone:
 
-#+begin_src sh
+```sh
 git clone --mirror YOUR_REPO /tmp/clone
 cd /tmp/clone
-#+end_src
+```
 
 Then run the below to search for unwanted secrets:
 
-#+begin_src sh
+```sh
 gitleaks detect --verbose --source .
-#+end_src
+```
 
 This will give a report that will show an output of the different Git commit
 hashes, file-paths and the secret at that location. Keep in mind that these are
@@ -60,75 +62,80 @@ If there's a large output, or if you're looking to automate the detection
 process (eg. as a push hook), then it can be set up to generate CSV or JSON
 reports like so:
 
-#+begin_src sh
+```sh
 gitleaks detect --source . --report=report.json
-#+end_src
+```
 
 This will produce a json file which can be read by a script.
 
 Once you've identified the secrets you'd like to erase, we can move on to using
-=git filter-repo=.
+`git filter-repo`.
 
-** Removing secrets
-=git filter-repo= is a versatile tool that replaces the older =git
-filter-branch= and BFG Repo-Cleaner for rewriting Git history. It allows you to
+
+## Removing secrets {#removing-secrets}
+
+`git filter-repo` is a versatile tool that replaces the older `git
+filter-branch` and BFG Repo-Cleaner for rewriting Git history. It allows you to
 modify your repository's history, including removing files, replacing text
-within files, and even changing commit metadata. =git filter-repo= is designed
+within files, and even changing commit metadata. `git filter-repo` is designed
 to be safer and faster than its predecessors, making it the recommended tool for
-history rewriting tasks. For detailed documentation, see [[https://github.com/newren/git-filter-repo/blob/main/Documentation/git-filter-repo.txt][git filter-repo
-Documentation]].
+history rewriting tasks. For detailed documentation, see [git filter-repo
+Documentation](https://github.com/newren/git-filter-repo/blob/main/Documentation/git-filter-repo.txt).
 
 As mentioned above, you'll want to use a fresh clone of the repository you
-intend to modify. This is because =git filter-repo= works by rewriting the
-*entire repo*, so the usual guarantees of being able to fish out the old version
-with [[https://git-scm.com/docs/git-reflog][=git reflog=]] and the like. Your repo will be rewritten in its entirety.
+intend to modify. This is because `git filter-repo` works by rewriting the
+**entire repo**, so the usual guarantees of being able to fish out the old version
+with [`git reflog`](https://git-scm.com/docs/git-reflog) and the like. Your repo will be rewritten in its entirety.
 
 There are different commands, depending on the type of secret you'd like to
 remove. If you'd like to remove a private key file, for example then you'd want
 to use --path to remove the file entirely. Otherwise, if it's just a single-line
 API key or password, then you can use --replace-text to remove it.
 
-*** Removing a file
+
+### Removing a file {#removing-a-file}
+
 To remove a file from your entire repository history, use the following
 command:
 
-#+begin_src sh
+```sh
 git filter-repo --invert-paths --path path/to/secret/file
-#+end_src
+```
 
-Replace =path/to/secret/file= with the actual path to the file you want to
-remove. The =--invert-paths= option tells =git filter-repo= to remove the
+Replace `path/to/secret/file` with the actual path to the file you want to
+remove. The `--invert-paths` option tells `git filter-repo` to remove the
 specified file(s), because by default it will keep only the paths mentioned,
 which is the opposite of what we want.
 
-*** Removing secrets in text
+
+### Removing secrets in text {#removing-secrets-in-text}
 
 If you need to remove secrets from within files without deleting the
-files themselves, use the =--replace-text= option. First, create a file
-named =expressions.txt= and list the secrets you want to replace,
-followed by ===>REPLACEMENT=, where =REPLACEMENT= is what you want to
-replace the secret with (often something generic like =REMOVED=).
+files themselves, use the `--replace-text` option. First, create a file
+named `expressions.txt` and list the secrets you want to replace,
+followed by `==>REPLACEMENT`, where `REPLACEMENT` is what you want to
+replace the secret with (often something generic like `REMOVED`).
 
-#+begin_example
+```text
 SECRET_jasdg021h0A7098==>REMOVED
 OOPS_P455W0RD==>REMOVED
-#+end_example
+```
 
 Be careful not to replace quotes if you want the repo to still compile.
 
 Next run:
 
-#+begin_src sh
+```sh
 git filter-repo --replace-text expressions.txt
-#+end_src
+```
 
 After rewriting history, you'll need to force push the changes to your
 remote repository:
 
-#+begin_src sh
+```sh
 git push origin --force --all
 git push origin --force --tags
-#+end_src
+```
 
 This step overwrites the history on the remote repository with your
 modified history. Be cautious, as this action cannot be undone.
@@ -143,13 +150,20 @@ keys that were on the repo. This is good practice even if the repo hasn't been
 made public yet, in case someone retains a copy with the old history.
 
 For more information on verifying the removal of sensitive data, consult this
-Stack Overflow discussion: [[https://stackoverflow.com/questions/5302520/how-do-i-verify-removal-of-sensitive-data-from-a-git-repository][Stack Overflow - Removing Sensitive Data]].
+Stack Overflow discussion: [Stack Overflow - Removing Sensitive Data](https://stackoverflow.com/questions/5302520/how-do-i-verify-removal-of-sensitive-data-from-a-git-repository).
 
-** Conclusion
-=git filter-repo= is a powerful tool for removing sensitive data from
+
+## Conclusion {#conclusion}
+
+`git filter-repo` is a powerful tool for removing sensitive data from
 Git repositories. By following the steps outlined in this article, you
 can ensure that secrets are erased from your repository's history,
 helping to maintain the security of your project. Remember, the best
 practice is to avoid committing sensitive information in the first
-place, but if mistakes happen, =git filter-repo= provides a reliable way
+place, but if mistakes happen, `git filter-repo` provides a reliable way
 to rectify them.
+
+[^fn:1]: If not, run GitLeaks
+    and change those secrets as soon as possible. If you're lucky, then no one will
+    have used up your AWS credits mining crypto!
+[^fn:2]: Unfortunately not Guix yet.

@@ -1,6 +1,5 @@
 out
 .packages
-content
 public
 resources
 .hugo_build.lock
