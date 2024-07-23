@@ -3,6 +3,9 @@ title = "How to Share /gnu/store between a Host and a Guest Guix System"
 author = ["Christina O'Donnell"]
 date = 2024-01-09
 draft = false
+[menu]
+    [menu.main]
+        parent = "blog"
 +++
 
 ## Introduction {#introduction}

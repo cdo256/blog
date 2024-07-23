@@ -4,6 +4,9 @@ author = ["Christina O'Donnell"]
 date = 2024-03-03
 keywords = ["Channels", [",", "Guix"], [",", "Linux"], [",", "Open"], "Source", [",", "GNU"], "System"]
 draft = false
+[menu]
+    [menu.main]
+        parent = "blog"
 +++
 
 ## Understanding Channels {#understanding-channels}

@@ -2,8 +2,11 @@
 title = "How to Erase Secrets in Git Repos with git filter-repo"
 author = ["Christina O'Donnell"]
 date = 2024-05-25
-linkTitle = "foo"
+linkTitle = "How to Erase Secrets in Git Repos with git filter-repo"
 draft = false
+[menu]
+    [menu.main]
+        parent = "blog"
 +++
 
 Here's the scenario: you have your dotfiles in a private repo that you've been

@@ -5,8 +5,10 @@ description = "A preliminary investigation"
 date = 2023-12-30
 keywords = ["Systemd", "Guix", "Guix System", "Linux", "open source"]
 linkTitle = "Systemd on Guix System - How hard could it be?"
-menus = "main"
 draft = false
+[menu]
+    [menu.main]
+        parent = "blog"
 +++
 
 > To be honest, while the Shepherd has been a fun hack, I’ve been more and
