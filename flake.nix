@@ -17,6 +17,7 @@
             nativeBuildInputs = with pkgs; [
               hugo
               emacs29-nox
+              rsync
             ];
           };
         };
