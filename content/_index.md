@@ -5,31 +5,26 @@ linkTitle = "Home"
 draft = false
 +++
 
-Greetings, Internet! I'm Christina O'Donnell, a computer science tutor and
-enthusiast based in Cambridge, England.
+Hi, I'm Christina O'Donnell, and I have a deep passion for Computer Science.
+From a young age, I've been captivated by computers and the intricacies of how
+they work. My journey led me to study Maths and Computer Science at Oxford.
+After completing my degree, I worked as a software engineer for six years,
+developing a data analytics program. I then decided to take a slightly different
+path in my career, to become a Computer Science tutor, allowing me to pursuing
+my research interests concurrently. This September (2024), I am excited to be
+starting an MSc in Computer Science at Nottingham. I'm hoping that this will be
+a step forward toward building a career in research.
 
-You can find more information about my tutoring on [my tutoring services page](https://octocurious.com/pages/tutoring.html).
+While I am still early in my academic career, I have formed initial interests in
+the areas of Dependent Type Theory, Functional Programming, Formal Verification,
+and Term Graph Rewriting Systems.
 
-I have a First Class BA in Mathematics and Computer Science for University of
-Oxford. You can read more about my professional history by downloading [my CV](https://octocurious.com/include/files/cv.pdf).
+If you want to read more, you can visit [my blog](/blog), check out [my
+projects](/projects), or learn about my [tutoring](/tutoring).
 
-My research interest is a formal system I call SGL, that represents all concepts
-as labeled directed graphs. Node identity is determined entirely by its outward
-links (up to isomorphism). My ultimate aim is to create a common abstract
-language that could allow programs, proofs and data to exist in the same 'space'.
-
-Some of my projects can be found on [GitHub](https://github.com/cdo256).
-
-I also play wheelchair basketball for [Hareward Heat WBC](http://www.heatwbc.org.uk/).
+You can also find me on [GitHub](https://github.com/cdo256), and Mastodon as [@octocurious@functional.cafe](https://functional.cafe/@octocurious).
 
 I am always happy to be contacted by all humans (as well as some high-quality
-marketing bots!) For that, you can email me on [christina@octocurious.com](mailto:christina@octocurious.com) (or
-equivalently [cdo@mutix.org](mailto:cdo@mutix.org)).
-
-
-## Recent blog posts {#recent-blog-posts}
-
-
-### TODO {#todo}
-
-See the [the full list of blog posts](https://octocurious.com/pages/blog.html).
+marketing bots!) For that, you can email me on
+[christina@octocurious.com](mailto:christina@octocurious.com) (or equivalently
+[cdo@mutix.org](mailto:cdo@mutix.org)).
