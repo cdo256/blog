@@ -2,4 +2,48 @@ baseURL = 'https://octocurious.com/'
 languageCode = 'en-us'
 title = 'Octocurious'
 theme = 'octohugious'
-sectionPagesMenu = 'header'
+sectionPagesMenu = 'main'
+
+[menus]
+    [[menus.header]]
+        name = "Blog"
+        pageRef = "/blog"
+        weight = 20
+    [[menus.header]]
+        name = "About"
+        pageRef = "/about"
+        weight = 30
+    [[menus.header]]
+        name = "Tutoring"
+        pageRef = "/tutoring"
+        weight = 40
+    [[menus.main]]
+        name = "Home"
+        pageRef = "/"
+        weight = 10
+    [[menus.main]]
+        name = "About"
+        pageRef = "/about"
+        weight = 30
+    [[menus.main]]
+        name = "Tutoring"
+        pageRef = "/tutoring"
+        weight = 40
+    [[menus.main]]
+        identifier = "blog"
+        name = "Blog"
+        pageRef = "/blog"
+        weight = 50
+
+[params]
+    author = "Christina O'Donnell"
+    math = true
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.extensions]
+      [markup.goldmark.extensions.passthrough]
+        enable = true
+        [markup.goldmark.extensions.passthrough.delimiters]
+          block = [['\[', '\]'], ['$$', '$$']]
+          inline = [['\(', '\)'], ['$', '$']]
