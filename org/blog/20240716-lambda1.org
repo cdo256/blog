@@ -1,0 +1,17 @@
+#+TITLE: &lambda;-Calculus - Introduction
+
+* What is $ \lambda $-Calculus?
+
+If you've never studied mathematical logic, then you might find Lambda calculus
+
+If you've never studied it on its own, then you might find the idea of Lambda
+Calculus a little strange.
+
+If you've studied mathematical logic, then the ideas 
+
+About the name: the "calculus" in "Lambda Calculus", simply means that it
+provides a way of calculating, and not that it has anything to do with integrals
+and derivatives.
+
+In particular if you haven't studied mathematical
+logic or type theory, but have been explained 
